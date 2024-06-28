@@ -8,7 +8,6 @@ import com.igrowker.donatello.auth.entities.CustomUser;
 import com.igrowker.donatello.exceptions.AlreadyExistException;
 import com.igrowker.donatello.exceptions.InvalidValueException;
 import com.igrowker.donatello.exceptions.NotFoundException;
-import com.igrowker.donatello.mappers.UserMapper;
 import com.igrowker.donatello.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,8 +26,6 @@ public class AuthService {
         PasswordEncoder passwordEncoder;
         @Autowired
         private JWTUtils jwtUtils;
-        @Autowired
-        private UserMapper userMapper;
 
         public void validateNewEmail(String email){
             if(userRepository.existsByEmail(email)) throw new AlreadyExistException("Email ya en uso!");
