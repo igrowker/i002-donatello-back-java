@@ -5,9 +5,6 @@ import com.igrowker.donatello.auth.JWTUtils;
 import com.igrowker.donatello.auth.LoginRequest;
 import com.igrowker.donatello.auth.RegisterRequest;
 import com.igrowker.donatello.auth.entities.CustomUser;
-import com.igrowker.donatello.exceptions.AlreadyExistException;
-import com.igrowker.donatello.exceptions.InvalidValueException;
-import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,12 +25,12 @@ public class AuthService {
         private JWTUtils jwtUtils;
 
         public void validateNewEmail(String email){
-            if(userRepository.existsByEmail(email)) throw new AlreadyExistException("Email ya en uso!");
+            // TODO MANEJO UNIFICADO DE EXCEPS => if(userRepository.existsByEmail(email))  throw new AlreadyExistException("Email ya en uso!");
         }
 
         public AuthResponse register(RegisterRequest registerRequest) {
             if (! registerRequest.getContrasena().equals(registerRequest.getContrasena2())) {
-                throw new InvalidValueException("Passwords no coinciden!");
+                // TODO MANEJO UNIFICADO DE EXCEPS => throw new InvalidValueException("Passwords no coinciden!");
             }
             validateNewEmail(registerRequest.getEmail());
             CustomUser user = new CustomUser().builder()
@@ -54,7 +51,8 @@ public class AuthService {
         public AuthResponse login(LoginRequest loginRequest) {
             UserDetails userDetails = userRepository
                     .findByEmail(loginRequest.getEmail())
-                    .orElseThrow(()->new NotFoundException(("Usuario no encontrado!")));
+                    .orElseThrow();
+                    // TODO MANEJO UNIFICADO DE EXCEPS =>  .orElseThrow(()->new NotFoundException(("Usuario no encontrado!")));
 
             authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
