@@ -26,7 +26,10 @@ public class Producto {
     @Column(nullable = false)
     private Integer stock;
 
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
+
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
     private CustomUser customUser;
 }
