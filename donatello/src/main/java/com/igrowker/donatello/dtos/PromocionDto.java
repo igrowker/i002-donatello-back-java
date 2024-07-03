@@ -12,13 +12,10 @@ import java.time.LocalDateTime;
 @Builder
 public class PromocionDto {
 
-    @NotNull(message = "Despcripcion no debe ser nula")
     private String descripcion;
 
-    @NotNull(message = "Fecha inicio no debe ser nula")
     private LocalDateTime fechaInicio;
-
-    @NotNull(message = "Fecha fin no debe ser nula")
+    
     private LocalDateTime fechaFin;
 
     private Integer usuarioId;
