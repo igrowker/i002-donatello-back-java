@@ -27,5 +27,5 @@ public class Cliente {
     private String direccion;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    private Usuario usuario;
+    private CustomUser usuario;
 }
