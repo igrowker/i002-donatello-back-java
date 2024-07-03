@@ -19,6 +19,7 @@ public class ClienteValidator implements IClienteValidator {
         validateNombre(clienteDto.getNombre());
         validateTelefono(clienteDto.getTelefono());
         validateDireccion(clienteDto.getDireccion());
+        validateUsuarioID(clienteDto.getUsuarioID());
     }
 
     private void validateNombre(String nombre){
@@ -44,6 +45,12 @@ public class ClienteValidator implements IClienteValidator {
     private void validateDireccion(String direccion){
         if (direccion == null || direccion.isEmpty()) {
             throw new FieldInvalidException("El campo Direccion es requerido");
+        }
+    }
+
+    private void validateUsuarioID(Integer usuarioID){
+        if (usuarioID == null) {
+            throw new FieldInvalidException("El campo usuarioID es requerido");
         }
     }
 
