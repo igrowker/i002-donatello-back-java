@@ -1,11 +1,11 @@
 package com.igrowker.donatello.repositories;
 
-import com.igrowker.donatello.models.Producto;
+import com.igrowker.donatello.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    Boolean existsByNombre(String nombre);
+    Boolean existsByName(String name);
 }
