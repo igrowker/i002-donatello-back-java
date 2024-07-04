@@ -10,24 +10,24 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "productos")
-public class Producto {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Integer id;
 
-    @Column(nullable = false , unique = true)
-    private String nombre;
+    @Column(name = "nombre", nullable = false , unique = true)
+    private String name;
 
-    @Column(nullable = false)
-    private String descripcion;
+    @Column(name = "descripcion", nullable = false)
+    private String description;
 
     @Column(nullable = false)
     private Integer stock;
 
     @Column(name = "id_usuario")
-    private Integer idUsuario;
+    private Integer idUser;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
