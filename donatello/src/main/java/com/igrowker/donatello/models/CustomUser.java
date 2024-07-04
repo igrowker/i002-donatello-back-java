@@ -1,4 +1,4 @@
-package com.igrowker.donatello.auth.entities;
+package com.igrowker.donatello.models;
 
 
 import jakarta.persistence.Column;
@@ -22,6 +22,7 @@ import java.util.Collection;
 public class CustomUser implements UserDetails  {
     @Id
     @GeneratedValue
+    @Column(name = "id_usuario")
     Integer id;
 
     @Column(nullable = false )
