@@ -1,8 +1,8 @@
 package com.igrowker.donatello.validators;
 
-import com.igrowker.donatello.dtos.ProductoDto;
+import com.igrowker.donatello.dtos.ProductDto;
 
 public interface ProductValidator {
 
-    void validate(ProductoDto productoDto);
+    void validate(ProductDto productDto);
 }

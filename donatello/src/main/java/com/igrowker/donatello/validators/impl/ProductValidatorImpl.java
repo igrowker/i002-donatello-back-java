@@ -1,6 +1,6 @@
 package com.igrowker.donatello.validators.impl;
 
-import com.igrowker.donatello.dtos.ProductoDto;
+import com.igrowker.donatello.dtos.ProductDto;
 import com.igrowker.donatello.exceptions.FieldInvalidException;
 import com.igrowker.donatello.validators.ProductValidator;
 import org.springframework.stereotype.Service;
@@ -8,36 +8,36 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductValidatorImpl implements ProductValidator {
     @Override
-    public void validate(ProductoDto productoDto) {
-        nombreValidator(productoDto.getNombre());
-        descripcionValidator(productoDto.getDescripcion());
-        stockValidator(productoDto.getStock());
-        usuarioIdValidatos(productoDto.getUsuarioId());
+    public void validate(ProductDto productDto) {
+        nameValidator(productDto.getName());
+        descriptionValidator(productDto.getDescription());
+        stockValidator(productDto.getStock());
+        userIdValidator(productDto.getUserId());
     }
 
-    private void nombreValidator(String nombre) {
-        if (nombre == null || nombre.isEmpty()){
-            throw new FieldInvalidException("El campo nombre no debe ser null");
+    private void nameValidator(String name) {
+        if (name == null || name.isEmpty()){
+            throw new FieldInvalidException("The name field must not be null");
         }
     }
 
-    private void descripcionValidator(String descripcion) {
-        if (descripcion == null || descripcion.isEmpty()){
-            throw new FieldInvalidException("El campo descripcion no debe ser null");
+    private void descriptionValidator(String description) {
+        if (description == null || description.isEmpty()){
+            throw new FieldInvalidException("The description field must not be null");
         }
     }
 
     private void stockValidator(Integer stock) {
         if (stock == null){
-            throw new FieldInvalidException("El campo stock no debe ser null");
+            throw new FieldInvalidException("The stock field must not be null");
         } else if (stock <= 0) {
-            throw new FieldInvalidException("El campo stock debe ser minimo 1");
+            throw new FieldInvalidException("The stock field must be a minimum of 1");
         }
     }
 
-    private void usuarioIdValidatos(Integer usuarioId) {
-        if (usuarioId == null){
-            throw new FieldInvalidException("El campo usuarioId no debe ser null");
+    private void userIdValidator(Integer userId) {
+        if (userId == null){
+            throw new FieldInvalidException("The userId field must not be null");
         }
     }
 }
