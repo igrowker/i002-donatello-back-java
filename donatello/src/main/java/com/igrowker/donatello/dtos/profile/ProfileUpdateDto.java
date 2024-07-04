@@ -10,15 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProfileUpdateDto {
-    String nombre; // en usuario
+    String name; // en usuario
     // NO SE DEBERIA PODER CAMBIAR ==> email;
-    String telefono; // en usuario
-    String contrasena; // en usuario
+    String phone; // en usuario
+    String password; // en usuario
 
-    String nombreEmpresa;
-    String direccion;
-    String direccionExtra;
-    String ciudad;
-    String codigoPostal;
-    String pais;
+    String companyName;
+    String address;
+    String addressDetails;
+    String city;
+    String postalCode;
+    String country;
 }
+

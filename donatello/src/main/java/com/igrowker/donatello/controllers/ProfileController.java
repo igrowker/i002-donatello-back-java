@@ -35,6 +35,6 @@ public class ProfileController {
     }
     @PutMapping()
     public ResponseEntity<ProfileReadDto> editProfile (@RequestHeader HttpHeaders headers, @Valid @RequestBody ProfileUpdateDto profileUpdateDto){
-        return new ResponseEntity<>(profileService.editProfile(profileUpdateDto), HttpStatus.OK);
+        return new ResponseEntity<>(profileService.editProfile(headers, profileUpdateDto), HttpStatus.OK);
     }
 }

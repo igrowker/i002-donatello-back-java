@@ -56,19 +56,25 @@ public class ProfileService {
         if(validateDataProfile(addDto)){
             // obtener usuario desde token, y agregarlo a profile, guardarlo y devolverlo como read
             addDto.setUser(authService.getLoguedUser(headers));
-
-            System.out.println("USUARIO LOGUEADO ==================== ");
-            System.out.println(authService.getLoguedUser(headers).getName());
-            System.out.println(authService.getLoguedUser(headers).getMail());
-            System.out.println("USUARIO LOGUEADO ==================== ");
-
             return profileMapper.toReadDto(profileRepository.save(profileMapper.toEntity(addDto)));
         }
         return null;
     }
-    public ProfileReadDto editProfile (ProfileUpdateDto profileUpdateDto){
+    public ProfileReadDto editProfile (HttpHeaders headers,ProfileUpdateDto updateDto){
+        CustomUser user = authService.getLoguedUser(headers);
+        Profile profileToUpdate = getProfileByIdUser(user.getId());
 
-        return new ProfileReadDto();
+        if( updateDto.getName()!= null || updateDto.getPhone()!= null || updateDto.getPassword()!= null){
+            authService.updateUser(user,updateDto);
+        }
+        if(updateDto.getCompanyName()!= null) profileToUpdate.setCompanyName(updateDto.getCompanyName());
+        if(updateDto.getAddress()!= null) profileToUpdate.setAddress(updateDto.getAddress());
+        if(updateDto.getAddressDetails()!= null) profileToUpdate.setAddressDetails(updateDto.getAddressDetails());
+        if(updateDto.getCity()!= null) profileToUpdate.setCity(updateDto.getCity());
+        if(updateDto.getPostalCode()!= null) profileToUpdate.setPostalCode(updateDto.getPostalCode());
+        if(updateDto.getCountry()!= null) profileToUpdate.setCountry(updateDto.getCountry());
+
+        return profileMapper.toReadDto(profileRepository.save(profileToUpdate));
     }
 
 

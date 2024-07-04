@@ -4,6 +4,7 @@ import com.igrowker.donatello.auth.AuthResponse;
 import com.igrowker.donatello.auth.JWTUtils;
 import com.igrowker.donatello.auth.LoginRequest;
 import com.igrowker.donatello.auth.RegisterRequest;
+import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
 import com.igrowker.donatello.models.CustomUser;
 import com.igrowker.donatello.exceptions.BadCredentialsException;
 import com.igrowker.donatello.exceptions.ConflictException;
@@ -72,5 +73,12 @@ public class AuthService {
         public CustomUser getLoguedUser(HttpHeaders headers){
             SecurityContext securityContext = SecurityContextHolder.getContext();
             return (CustomUser) securityContext.getAuthentication().getPrincipal(); // retorna el usuario que envia el jwt
+        }
+
+        public CustomUser updateUser(CustomUser user, ProfileUpdateDto profileUpdateDto){
+            if(profileUpdateDto.getName()!= null) user.setName(profileUpdateDto.getName());
+            if(profileUpdateDto.getPhone()!= null) user.setPhone(profileUpdateDto.getPhone());
+            if(profileUpdateDto.getPassword()!= null) user.setPassword(passwordEncoder.encode(profileUpdateDto.getPassword()));
+            return userRepository.save(user);
         }
 }
