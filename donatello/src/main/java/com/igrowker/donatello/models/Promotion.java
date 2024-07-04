@@ -14,27 +14,27 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "promociones")
-public class Promocion {
+public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_promocion")
     private Integer id;
 
-    @Column(nullable = false)
-    private String descripcion;
+    @Column(name = "descripcion", nullable = false)
+    private String description;
 
     @Column(name = "fecha_inicio", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedDate
-    private LocalDateTime fechaInicio;
+    private LocalDateTime startDate;
 
     @Column(name = "fecha_fin", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime fechaFin;
+    private LocalDateTime endDate;
 
     @Column(name = "id_usuario")
-    private Integer idUsuario;
+    private Integer idUser;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
