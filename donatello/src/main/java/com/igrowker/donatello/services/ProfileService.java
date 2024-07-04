@@ -4,7 +4,6 @@ import com.igrowker.donatello.dtos.profile.ProfileAddDto;
 import com.igrowker.donatello.dtos.profile.ProfileReadDto;
 import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
 import com.igrowker.donatello.dtos.profile.PublicProfileReadDto;
-import com.igrowker.donatello.exceptions.FieldInvalidException;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.ProfileMapper;
 import com.igrowker.donatello.models.CustomUser;
@@ -26,23 +25,22 @@ public class ProfileService {
     AuthService authService;
 
     public Profile getProfileByIdUser(Integer idUser){
-        Optional<Profile> profile = profileRepository.findByIdUsuario(idUser);
+        Optional<Profile> profile = profileRepository.findByIdUser(idUser);
         if(profile.isEmpty()) throw new NotFoundException("No existe el perfil del usuario");
         return profile.get();
     }
     public PublicProfileReadDto getPublicProfile(Integer idUser){
         Profile p = getProfileByIdUser(idUser);
         return PublicProfileReadDto.builder()
-                .nombre(p.getUsuario().getNombre())
-                .email(p.getUsuario().getEmail())
-                .contrasena(p.getUsuario().getEmail())
-                .telefono(p.getUsuario().getTelefono())
-                .nombreEmpresa(p.getNombreEmpresa())
-                .direccion(p.getDireccion())
-                .direccionExtra(p.getDireccionExtra())
-                .ciudad(p.getCiudad())
-                .codigoPostal(p.getCodigoPostal())
-                .pais(p.getPais())
+                .name(p.getUser().getName())
+                .mail(p.getUser().getMail())
+                .phone(p.getUser().getPhone())
+                .companyName(p.getCompanyName())
+                .address(p.getAddress())
+                .addressDetails(p.getAddressDetails())
+                .city(p.getCity())
+                .postalCode(p.getPostalCode())
+                .country(p.getCountry())
                 .build();
     }
     public ProfileReadDto getProfile (HttpHeaders headers){
@@ -57,11 +55,11 @@ public class ProfileService {
     public ProfileReadDto createProfile (HttpHeaders headers, ProfileAddDto addDto){
         if(validateDataProfile(addDto)){
             // obtener usuario desde token, y agregarlo a profile, guardarlo y devolverlo como read
-            addDto.setUsuario(authService.getLoguedUser(headers));
+            addDto.setUser(authService.getLoguedUser(headers));
 
             System.out.println("USUARIO LOGUEADO ==================== ");
-            System.out.println(authService.getLoguedUser(headers).getNombre());
-            System.out.println(authService.getLoguedUser(headers).getEmail());
+            System.out.println(authService.getLoguedUser(headers).getName());
+            System.out.println(authService.getLoguedUser(headers).getMail());
             System.out.println("USUARIO LOGUEADO ==================== ");
 
             return profileMapper.toReadDto(profileRepository.save(profileMapper.toEntity(addDto)));

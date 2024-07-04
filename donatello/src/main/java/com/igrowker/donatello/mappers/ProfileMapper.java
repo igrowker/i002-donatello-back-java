@@ -7,42 +7,30 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileMapper {
-    // String nombre; // en usuario
-    // String email; // en usuario
-    // String telefono; // en usuario
-    // String contrasena; // en usuario
-
-    // String nombreEmpresa;
-    // String direccion;
-    // String direccionExtra;
-    // String ciudad;
-    // String codigoPostal;
-    // String pais;
-
     public ProfileReadDto toReadDto(Profile profile){
 
         return new ProfileReadDto().builder()
-                .nombre(profile.getUsuario().getNombre())
-                .email(profile.getUsuario().getEmail())
-                .telefono(profile.getUsuario().getTelefono())
+                .name(profile.getUser().getName())
+                .mail(profile.getUser().getMail())
+                .phone(profile.getUser().getPhone())
                 // TODO => DEBERIA SER ENVIADA PARA CAMBIARSE POR EL USUARIO? .contrasena(profile.getUsuario().getContrasena())
-                .nombreEmpresa(profile.getNombreEmpresa())
-                .direccion(profile.getDireccion())
-                .direccionExtra(profile.getDireccionExtra())
-                .ciudad(profile.getCiudad())
-                .codigoPostal(profile.getCodigoPostal())
-                .pais(profile.getPais())
+                .companyName(profile.getCompanyName())
+                .address(profile.getAddress())
+                .addressDetails(profile.getAddressDetails())
+                .city(profile.getCity())
+                .postalCode(profile.getPostalCode())
+                .country(profile.getCountry())
                 .build();
     }
     public Profile toEntity(ProfileAddDto addDto){
         return new Profile().builder()
-                .usuario(addDto.getUsuario())
-                .nombreEmpresa(addDto.getNombreEmpresa())
-                .direccion(addDto.getDireccion())
-                .direccionExtra(addDto.getDireccionExtra())
-                .ciudad(addDto.getCiudad())
-                .codigoPostal(addDto.getCodigoPostal())
-                .pais(addDto.getPais())
+                .user(addDto.getUser())
+                .companyName(addDto.getCompanyName())
+                .address(addDto.getAddress())
+                .addressDetails(addDto.getAddressDetails())
+                .city(addDto.getCity())
+                .postalCode(addDto.getPostalCode())
+                .country(addDto.getCountry())
                 .build();
     }
 

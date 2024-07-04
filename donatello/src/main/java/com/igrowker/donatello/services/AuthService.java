@@ -27,27 +27,28 @@ public class AuthService {
         AuthenticationManager authenticationManager;
         @Autowired
         PasswordEncoder passwordEncoder;
+
         @Autowired
         private JWTUtils jwtUtils;
 
-        public void validateNewEmail(String email){
-            if(userRepository.existsByEmail(email))  throw new ConflictException("Email ya en uso!");
+        public void validateNewMail(String mail){
+            if(userRepository.existsByMail(mail))  throw new ConflictException("Email ya en uso!");
         }
 
         public AuthResponse register(RegisterRequest registerRequest) {
-            if (! registerRequest.getContrasena().equals(registerRequest.getContrasena2())) throw new FieldInvalidException("Passwords no coinciden!");
+            if (! registerRequest.getPassword().equals(registerRequest.getPassword2())) throw new FieldInvalidException("Passwords no coinciden!");
 
-            validateNewEmail(registerRequest.getEmail());
+            validateNewMail(registerRequest.getMail());
             CustomUser user = new CustomUser().builder()
-                    .nombre(registerRequest.getNombre())
-                    .email(registerRequest.getEmail())
-                    .contrasena(passwordEncoder.encode(registerRequest.getContrasena()))
-                    .telefono(registerRequest.getTelefono())
+                    .name(registerRequest.getName())
+                    .mail(registerRequest.getMail())
+                    .password(passwordEncoder.encode(registerRequest.getPassword()))
+                    .phone(registerRequest.getPhone())
                     .build();
             userRepository.save(user);
             authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(registerRequest.getEmail(),
-                            registerRequest.getContrasena()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(registerRequest.getMail(),
+                            registerRequest.getPassword()));
             return AuthResponse.builder()
                     .token(jwtUtils.generateToken(user))
                     .build();
@@ -55,12 +56,12 @@ public class AuthService {
 
         public AuthResponse login(LoginRequest loginRequest) {
             UserDetails userDetails = userRepository
-                    .findByEmail(loginRequest.getEmail())
+                    .findByMail(loginRequest.getMail())
                     .orElseThrow(()->new BadCredentialsException());
 
             authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
-                            loginRequest.getContrasena()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getMail(),
+                            loginRequest.getPassword()));
 
             String token = jwtUtils.generateToken(userDetails);
             return AuthResponse.builder()

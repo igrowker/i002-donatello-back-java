@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProfileReadDto {
-    String nombre; // en usuario
-    String email; // en usuario
-    String telefono; // en usuario
+    String name; // en usuario
+    String mail; // en usuario
+    String phone; // en usuario
     // TODO => DEBERIA SER ENVIADA PARA CAMBIARSE POR EL USUARIO? String contrasena; // en usuario
-    String nombreEmpresa;
-    String direccion;
-    String direccionExtra;
-    String ciudad;
-    String codigoPostal;
-    String pais;
+    String companyName;
+    String address;
+    String addressDetails;
+    String city;
+    String postalCode;
+    String country;
 }

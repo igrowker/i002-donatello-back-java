@@ -10,15 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PublicProfileReadDto {
-    String nombre;
-    String email;
-    String contrasena;
-    String telefono;
-    String nombreEmpresa;
-    String direccion;
-    String direccionExtra;
-    String ciudad;
-    String codigoPostal;
-    String pais;
+    String name;
+    String mail;
+    String phone;
+    String companyName;
+    String address;
+    String addressDetails;
+    String city;
+    String postalCode;
+    String country;
 }
 

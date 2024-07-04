@@ -19,17 +19,17 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name="usuario", referencedColumnName="id_usuario")
-    private CustomUser usuario;
+    private CustomUser user;
 
     @Column(nullable = false )
-    String nombreEmpresa;
+    String companyName;
     @Column(nullable = false )
-    String direccion;
-    String direccionExtra;
+    String address;
+    String addressDetails;
     @Column(nullable = false )
-    String ciudad;
+    String city;
     @Column(nullable = false )
-    String codigoPostal;
+    String postalCode;
     @Column(nullable = false )
-    String pais;
+    String country;
 }

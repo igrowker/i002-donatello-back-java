@@ -26,16 +26,16 @@ public class CustomUser implements UserDetails  {
     Integer id;
 
     @Column(nullable = false )
-    String nombre;
+    String name;
 
     @Column(nullable = false , unique = true)
-    String email;
+    String mail;
 
     @Column(nullable = false )
-    String contrasena;
+    String password;
 
     @Column(nullable = false )
-    String telefono;
+    String phone;
 
     /*
     @OneToMany(fetch = FetchType.LAZY)
@@ -58,12 +58,12 @@ public class CustomUser implements UserDetails  {
     }
     @Override
     public String getPassword() {
-        return contrasena;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return mail;
     }
 
 }
