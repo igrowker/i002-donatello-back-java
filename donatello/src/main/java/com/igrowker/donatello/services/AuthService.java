@@ -10,8 +10,11 @@ import com.igrowker.donatello.exceptions.ConflictException;
 import com.igrowker.donatello.exceptions.FieldInvalidException;
 import com.igrowker.donatello.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -63,5 +66,10 @@ public class AuthService {
             return AuthResponse.builder()
                     .token(token)
                     .build();
+        }
+
+        public CustomUser getLoguedUser(HttpHeaders headers){
+            SecurityContext securityContext = SecurityContextHolder.getContext();
+            return (CustomUser) securityContext.getAuthentication().getPrincipal(); // retorna el usuario que envia el jwt
         }
 }

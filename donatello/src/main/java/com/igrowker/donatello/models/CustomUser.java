@@ -41,7 +41,7 @@ public class CustomUser implements UserDetails  {
     @OneToMany(fetch = FetchType.LAZY)
     Usuarios - Proveedores: (1:N)
     Usuarios - Clientes: (1:N)
-    Usuarios - Productos: (1:N)
+    todo verificar si esta bien que la relacion este en productos, deberia ser OneToMany (1 usuario a muchos productos)? -> Usuarios - Productos: (1:N)
     Usuarios - Menús: (1:N)
     Usuarios - Finanzas: (1:N)
     Usuarios - Promociones: (1:N)
