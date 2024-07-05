@@ -1,4 +1,4 @@
-package com.igrowker.donatello.controllers.auth;
+package com.igrowker.donatello.controllers;
 
 import com.igrowker.donatello.auth.AuthResponse;
 import com.igrowker.donatello.auth.LoginRequest;
