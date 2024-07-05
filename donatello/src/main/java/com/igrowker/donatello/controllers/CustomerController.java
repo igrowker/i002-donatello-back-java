@@ -14,28 +14,29 @@ public class CustomerController {
 
     @Autowired
     ICustomerService customerService;
+
     @Autowired
     ICustomerValidator customerValidator;
 
     @GetMapping
-    public ResponseEntity<?> getCustomers(){
+    public ResponseEntity<?> getCustomers() {
         return new ResponseEntity<>(customerService.getCustomers(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody CustomerDTO customerDto){
+    public ResponseEntity<?> add(@RequestBody CustomerDTO customerDto) {
         customerValidator.validate(customerDto);
         return new ResponseEntity<>(customerService.add(customerDto), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping(value="/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody CustomerDTO customerDto){
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody CustomerDTO customerDto) {
         customerValidator.validate(customerDto);
         return new ResponseEntity<>(customerService.update(id, customerDto), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Integer id){
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         customerService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

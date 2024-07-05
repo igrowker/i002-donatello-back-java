@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<CustomerDTO> getCustomers() {
-        return customerRepository.findAll().stream().map((customer)-> customerMapper.customerToCustomerDTO(customer)).collect(Collectors.toList());
+        return customerRepository.findAll().stream().map((customer) -> customerMapper.customerToCustomerDTO(customer)).collect(Collectors.toList());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void delete(Integer id) {
-        if(customerRepository.existsById(id)) customerRepository.deleteById(id);
-        else throw new NotFoundException("ID: "+ id);
+        if (customerRepository.existsById(id)) customerRepository.deleteById(id);
+        else throw new NotFoundException("ID: " + id);
     }
 }

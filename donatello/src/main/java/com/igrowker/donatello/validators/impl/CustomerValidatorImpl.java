@@ -9,7 +9,7 @@ import com.igrowker.donatello.validators.ICustomerValidator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerValidator implements ICustomerValidator {
+public class CustomerValidatorImpl implements ICustomerValidator {
 
     PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 
@@ -22,12 +22,13 @@ public class CustomerValidator implements ICustomerValidator {
         validateUserID(customerDto.getUserID());
     }
 
-    private void validateName(String name){
+    private void validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new FieldInvalidException("The Name field is required");
         }
     }
-    private void validatePhone(String phone){
+
+    private void validatePhone(String phone) {
         if (phone == null || phone.isEmpty()) {
             throw new FieldInvalidException("The Phone field is required");
         }
@@ -42,13 +43,14 @@ public class CustomerValidator implements ICustomerValidator {
             throw new FieldInvalidException("The format of the Phone field is invalid.");
         }
     }
-    private void validateAddress(String address){
+
+    private void validateAddress(String address) {
         if (address == null || address.isEmpty()) {
             throw new FieldInvalidException("The Address field is required");
         }
     }
 
-    private void validateUserID(Integer userID){
+    private void validateUserID(Integer userID) {
         if (userID == null) {
             throw new FieldInvalidException("The userID field is required");
         }

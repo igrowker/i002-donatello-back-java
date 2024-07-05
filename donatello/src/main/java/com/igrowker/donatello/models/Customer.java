@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="customers")
+@Table(name = "customers")
 public class Customer {
 
     @Id
@@ -17,13 +17,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (name = "name")
+    @Column(name = "name")
     private String name;
 
-    @Column (name = "phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column (name = "address")
+    @Column(name = "address")
     private String address;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
