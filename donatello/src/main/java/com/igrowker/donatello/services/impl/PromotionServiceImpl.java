@@ -5,7 +5,7 @@ import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.PromotionMapper;
 import com.igrowker.donatello.models.Promotion;
 import com.igrowker.donatello.repositories.PromotionRepository;
-import com.igrowker.donatello.repositories.UserRepository;
+import com.igrowker.donatello.repositories.IUserRepository;
 import com.igrowker.donatello.services.PromotionService;
 import com.igrowker.donatello.validators.PromotionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,13 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Autowired
     private PromotionRepository promotionRepository;
+
+    @Autowired
+    private IUserRepository userRepository;
+
     @Autowired
     private PromotionMapper promotionMapper;
-    @Autowired
-    private UserRepository userRepository;
+
     @Autowired
     private PromotionValidator promotionValidator;
 
@@ -48,7 +51,7 @@ public class PromotionServiceImpl implements PromotionService {
         promotionDto.setStartDate(date);
         promotionValidator.validate(promotionDto);
         Promotion promotion = promotionRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Promotion not found!"));
+                .orElseThrow(() -> new NotFoundException("Promotion not found!"));
         promotion.setCustomUser(userRepository.getReferenceById(promotionDto.getUserId()));
         promotionMapper.updatePromotion(promotion, promotionDto);
         return promotionMapper.toPromotionDto(promotionRepository.save(promotion));
@@ -57,7 +60,7 @@ public class PromotionServiceImpl implements PromotionService {
     @Override
     public PromotionDto delete(Integer id) {
         Promotion promotion = promotionRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Promotion not found!"));
+                .orElseThrow(() -> new NotFoundException("Promotion not found!"));
         PromotionDto promotionDto = promotionMapper.toPromotionDto(promotion);
         promotionRepository.deleteById(id);
         return promotionDto;
