@@ -9,23 +9,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="cliente")
-public class Cliente {
+@Table(name = "customers")
+public class Customer {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (name = "nombre")
-    private String nombre;
+    @Column(name = "name")
+    private String name;
 
-    @Column (name = "telefono")
-    private String telefono;
+    @Column(name = "phone")
+    private String phone;
 
-    @Column (name = "direccion")
-    private String direccion;
+    @Column(name = "address")
+    private String address;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    private CustomUser usuario;
+    private CustomUser user;
 }
