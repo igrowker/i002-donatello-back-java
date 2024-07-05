@@ -9,27 +9,27 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "productos")
+@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
+    @Column(name = "id_product")
     private Integer id;
 
-    @Column(name = "nombre", nullable = false , unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
     @Column(nullable = false)
     private Integer stock;
 
-    @Column(name = "id_usuario")
+    @Column(name = "user_id")
     private Integer idUser;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private CustomUser customUser;
 }
