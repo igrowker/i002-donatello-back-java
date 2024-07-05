@@ -10,7 +10,10 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface MenuProductMapper {
 
-    @Mapping(target = "id.idMenu", ignore = true)
+    @Mappings({
+            @Mapping(target = "id.idMenu", ignore = true),
+            @Mapping(target = "id.idProduct", source = "productId")
+    })
     MenuProduct toMenusProduct(MenuProductDto menuProductDto);
 
     @Mapping(target = "productId", source = "id.idProduct")
