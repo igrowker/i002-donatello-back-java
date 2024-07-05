@@ -6,9 +6,8 @@ import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.ProductMapper;
 import com.igrowker.donatello.models.Product;
 import com.igrowker.donatello.repositories.IProductRepository;
-import com.igrowker.donatello.repositories.UserRepository;
+import com.igrowker.donatello.repositories.IUserRepository;
 import com.igrowker.donatello.services.IProductService;
-import com.igrowker.donatello.validators.IProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public class ProductServiceImpl implements IProductService {
     private IProductRepository productRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Autowired
     private ProductMapper productMapper;

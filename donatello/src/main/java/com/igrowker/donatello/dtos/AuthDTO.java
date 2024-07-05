@@ -1,4 +1,4 @@
-package com.igrowker.donatello.auth;
+package com.igrowker.donatello.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
+public class AuthDTO {
     String token;
 }

@@ -1,8 +1,7 @@
-package com.igrowker.donatello.auth;
+package com.igrowker.donatello.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,27 +10,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.function.Function;
 
 @Component
 public class JWTUtils {
+
     @Autowired
     private Environment environment;
-    private  static  final long EXPIRATION_TIME = 86400000;  //24hs
+
+    private static final long EXPIRATION_TIME = 86400000;//24hs
+
     private java.security.Key getKey() {
         byte[] keyBytes = Decoders.BASE64.decode(getSecretKey());
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
     private String getSecretKey() {
         return environment.getProperty("secret.key");
     }
-    public String generateToken(UserDetails userDetails){
+
+    public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
@@ -39,20 +38,21 @@ public class JWTUtils {
                 .signWith(getKey())
                 .compact();
     }
-    public  String extractUsername(String token){
-        return  extractClaims(token, Claims::getSubject);
+
+    public String extractUsername(String token) {
+        return extractClaims(token, Claims::getSubject);
     }
 
-    private <T> T extractClaims(String token, Function<Claims, T> claimsTFunction){
+    private <T> T extractClaims(String token, Function<Claims, T> claimsTFunction) {
         return claimsTFunction.apply(Jwts.parser().verifyWith((SecretKey) getKey()).build().parseSignedClaims(token).getPayload());
     }
 
-    public  boolean isTokenValid(String token, UserDetails userDetails){
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    public  boolean isTokenExpired(String token){
+    public boolean isTokenExpired(String token) {
         return extractClaims(token, Claims::getExpiration).before(new Date());
     }
 

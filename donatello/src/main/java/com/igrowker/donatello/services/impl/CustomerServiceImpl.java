@@ -5,7 +5,7 @@ import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.CustomerMapper;
 import com.igrowker.donatello.models.Customer;
 import com.igrowker.donatello.repositories.ICustomerRepository;
-import com.igrowker.donatello.repositories.UserRepository;
+import com.igrowker.donatello.repositories.IUserRepository;
 import com.igrowker.donatello.services.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements ICustomerService {
     private ICustomerRepository customerRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Autowired
     private CustomerMapper customerMapper;
