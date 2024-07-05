@@ -19,6 +19,7 @@ public class MenuProduct {
     private Integer amount;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @MapsId("id_menu")
     @JoinColumn(name = "id_menu", insertable = false, updatable = false)
     private Menu menu;
 
