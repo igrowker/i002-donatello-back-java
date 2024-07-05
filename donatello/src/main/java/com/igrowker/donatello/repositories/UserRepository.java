@@ -1,6 +1,6 @@
 package com.igrowker.donatello.repositories;
 
-import com.igrowker.donatello.models.CustomUser;
+import com.igrowker.donatello.auth.entities.CustomUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
