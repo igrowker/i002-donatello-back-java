@@ -1,4 +1,4 @@
-package com.igrowker.donatello.services;
+package com.igrowker.donatello.services.impl;
 
 import com.igrowker.donatello.dtos.profile.ProfileAddDto;
 import com.igrowker.donatello.dtos.profile.ProfileReadDto;
@@ -9,6 +9,8 @@ import com.igrowker.donatello.mappers.ProfileMapper;
 import com.igrowker.donatello.models.CustomUser;
 import com.igrowker.donatello.models.Profile;
 import com.igrowker.donatello.repositories.ProfileRepository;
+import com.igrowker.donatello.services.IAuthService;
+import com.igrowker.donatello.services.IProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProfileService {
+public class ProfileServiceImpl implements IProfileService {
 
     @Autowired
     ProfileMapper profileMapper;
@@ -53,7 +55,7 @@ public class ProfileService {
         return profileMapper.toReadDto(getProfileByIdUser(user.getId()));
     }
 
-    private boolean validateDataProfile(ProfileAddDto profileAddDto) {
+    public boolean validateDataProfile(ProfileAddDto profileAddDto) {
         // todo validaciones de Pais, ciudad, codigo postal => throw new FieldInvalidException("Valores invalidos...?");
         return true;
     }
@@ -83,6 +85,8 @@ public class ProfileService {
 
         return profileMapper.toReadDto(profileRepository.save(profileToUpdate));
     }
+
+
 
 
 }
