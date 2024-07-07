@@ -27,6 +27,8 @@ public class ProductController {
 
     @PostMapping("/inventory")
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto) {
+        // TODO aqui, para obtener el usuario, Deberiamos desde el controlador agregar => @RequestHeader HttpHeaders headers y usaria el metodo authService.getLoguedUser(headers).getId();
+        // todo de esta manera se obtiene el usuario desde el token, asegurando que el usuario logueado es el que crea el producto y evita que se puedan crear productos a nombre de otros.. Pienso que deberiamos implementar a nivel servicio
         productValidator.validate(productDto);
         return new ResponseEntity<>(productService.add(productDto), HttpStatus.CREATED);
     }

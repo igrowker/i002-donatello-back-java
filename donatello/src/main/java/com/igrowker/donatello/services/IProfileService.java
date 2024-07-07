@@ -1,7 +1,5 @@
 package com.igrowker.donatello.services;
 
-import com.igrowker.donatello.dtos.AuthDTO;
-import com.igrowker.donatello.dtos.RegisterDTO;
 import com.igrowker.donatello.dtos.profile.ProfileAddDto;
 import com.igrowker.donatello.dtos.profile.ProfileReadDto;
 import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
