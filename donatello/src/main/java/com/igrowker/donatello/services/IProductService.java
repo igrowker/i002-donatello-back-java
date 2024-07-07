@@ -1,6 +1,7 @@
 package com.igrowker.donatello.services;
 
 import com.igrowker.donatello.dtos.ProductDTO;
+import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
@@ -8,9 +9,9 @@ public interface IProductService {
 
     List<ProductDTO> getProducts();
 
-    ProductDTO add(ProductDTO productDto);
+    ProductDTO add(HttpHeaders headers, ProductDTO productDto);
 
-    ProductDTO update(Integer productId, ProductDTO productDto);
+    ProductDTO update(HttpHeaders headers,Integer productId, ProductDTO productDto);
 
-    ProductDTO delete(Integer productId);
+    ProductDTO delete(HttpHeaders headers,Integer productId);
 }

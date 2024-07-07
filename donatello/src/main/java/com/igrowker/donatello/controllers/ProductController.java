@@ -4,6 +4,7 @@ import com.igrowker.donatello.dtos.ProductDTO;
 import com.igrowker.donatello.services.IProductService;
 import com.igrowker.donatello.validators.IProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,21 +27,19 @@ public class ProductController {
     }
 
     @PostMapping("/inventory")
-    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDto) {
-        // TODO aqui, para obtener el usuario, Deberiamos desde el controlador agregar => @RequestHeader HttpHeaders headers y usaria el metodo authService.getLoguedUser(headers).getId();
-        // todo de esta manera se obtiene el usuario desde el token, asegurando que el usuario logueado es el que crea el producto y evita que se puedan crear productos a nombre de otros.. Pienso que deberiamos implementar a nivel servicio
+    public ResponseEntity<ProductDTO> addProduct(@RequestHeader HttpHeaders headers, @RequestBody ProductDTO productDto) {
         productValidator.validate(productDto);
-        return new ResponseEntity<>(productService.add(productDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.add(headers, productDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/inventory/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productDto) {
+    public ResponseEntity<ProductDTO> updateProduct(@RequestHeader HttpHeaders headers, @PathVariable Integer id, @RequestBody ProductDTO productDto) {
         productValidator.validate(productDto);
-        return new ResponseEntity<>(productService.update(id, productDto), HttpStatus.OK);
+        return new ResponseEntity<>(productService.update(headers,id, productDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/inventory/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
-        return new ResponseEntity<>(productService.delete(id), HttpStatus.OK);
+    public ResponseEntity<?> deleteProduct(@RequestHeader HttpHeaders headers,@PathVariable Integer id) {
+        return new ResponseEntity<>(productService.delete(headers,id), HttpStatus.OK);
     }
 }

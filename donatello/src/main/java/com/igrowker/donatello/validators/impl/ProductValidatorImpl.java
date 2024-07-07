@@ -13,7 +13,7 @@ public class ProductValidatorImpl implements IProductValidator {
         nameValidator(productDto.getName());
         descriptionValidator(productDto.getDescription());
         stockValidator(productDto.getStock());
-        userIdValidator(productDto.getUserID());
+        // todo se obtiene desde JWT luego => validateUserID(customerDto.getUserID());
     }
 
     private void nameValidator(String name) {
