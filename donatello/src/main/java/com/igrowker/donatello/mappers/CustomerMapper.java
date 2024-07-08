@@ -9,8 +9,10 @@ import org.mapstruct.Mapping;
 public interface CustomerMapper {
 
     @Mapping(target = "user", ignore = true)
+    @Mapping(target = "id", source = "id")
     Customer customerDTOToCustomer(CustomerDTO customerDto);
 
     @Mapping(target = "userID", source = "customer.user.id")
+    @Mapping(target = "id", source = "id")
     CustomerDTO customerToCustomerDTO(Customer customer);
 }

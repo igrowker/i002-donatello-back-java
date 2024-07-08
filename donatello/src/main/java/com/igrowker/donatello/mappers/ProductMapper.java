@@ -12,13 +12,16 @@ import java.util.List;
 public interface ProductMapper {
 
     @Mapping(target = "idUser", source = "userID")
+    @Mapping(target = "id", source = "id")
     Product toProduct(ProductDTO productDto);
 
     @Mapping(target = "userID", source = "idUser")
+    @Mapping(target = "id", source = "id")
     ProductDTO toProductDto(Product product);
 
     List<ProductDTO> toProductsDto(List<Product> products);
 
     @Mapping(source = "userID", target = "idUser")
+    @Mapping(target = "id", source = "id")
     void updateProduct(@MappingTarget Product product, ProductDTO productDto);
 }
