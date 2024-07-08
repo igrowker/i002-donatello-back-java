@@ -23,8 +23,8 @@ public class PromotionController {
     }
 
     @GetMapping("/promotions")
-    public ResponseEntity<List<PromotionDto>> getPromotions(){
-        return new ResponseEntity<>(promotionService.getPromotions(), HttpStatus.OK);
+    public ResponseEntity<List<PromotionDto>> getPromotions(@RequestHeader HttpHeaders headers){
+        return new ResponseEntity<>(promotionService.getPromotions(headers), HttpStatus.OK);
     }
 
     @PutMapping("/promotions/{id}")

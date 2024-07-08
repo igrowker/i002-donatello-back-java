@@ -34,8 +34,9 @@ public class CustomerServiceImpl implements ICustomerService {
     IAuthService authService;
 
     @Override
-    public List<CustomerDTO> getCustomers() {
-        return customerRepository.findAll().stream().map((customer) -> customerMapper.customerToCustomerDTO(customer)).collect(Collectors.toList());
+    public List<CustomerDTO> getCustomers(HttpHeaders headers) {
+        Integer userId = authService.getLoguedUser(headers).getId();
+        return customerRepository.findAllByIdCustomUser(userId).stream().map((customer) -> customerMapper.customerToCustomerDTO(customer)).collect(Collectors.toList());
     }
 
     @Override

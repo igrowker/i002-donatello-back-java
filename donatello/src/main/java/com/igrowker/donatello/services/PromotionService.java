@@ -9,7 +9,7 @@ public interface PromotionService {
 
     PromotionDto save(HttpHeaders headers,PromotionDto promotionDto);
 
-    List<PromotionDto> getPromotions();
+    List<PromotionDto> getPromotions(HttpHeaders headers);
 
     PromotionDto update(HttpHeaders headers,Integer id, PromotionDto promotionDto);
 
