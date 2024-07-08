@@ -22,8 +22,8 @@ public class ProductController {
     private IProductValidator productValidator;
 
     @GetMapping("/inventory")
-    public ResponseEntity<List<ProductDTO>> getProducts() {
-        return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
+    public ResponseEntity<List<ProductDTO>> getProducts(@RequestHeader HttpHeaders headers) {
+        return new ResponseEntity<>(productService.getProducts(headers), HttpStatus.OK);
     }
 
     @PostMapping("/inventory")

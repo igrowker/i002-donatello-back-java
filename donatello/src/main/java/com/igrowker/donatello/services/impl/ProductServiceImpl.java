@@ -33,8 +33,9 @@ public class ProductServiceImpl implements IProductService {
     IAuthService authService;
 
     @Override
-    public List<ProductDTO> getProducts() {
-        return productMapper.toProductsDto(productRepository.findAll());
+    public List<ProductDTO> getProducts(HttpHeaders headers) {
+        Integer userId = authService.getLoguedUser(headers).getId();
+        return productMapper.toProductsDto(productRepository.findAllByIdUser(userId));
     }
 
     @Override
@@ -61,6 +62,7 @@ public class ProductServiceImpl implements IProductService {
         if(! product.getCustomUser().getId().equals(userId)){
             throw new ForbiddenException("The user cannot update someone else's product.");
         }
+        productDto.setUserID(userId);
 
         product.setCustomUser(userRepository.getReferenceById(productDto.getUserID()));
         productMapper.updateProduct(product, productDto);

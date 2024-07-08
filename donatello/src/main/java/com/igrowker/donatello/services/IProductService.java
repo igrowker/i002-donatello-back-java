@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IProductService {
 
-    List<ProductDTO> getProducts();
+    List<ProductDTO> getProducts(HttpHeaders headers);
 
     ProductDTO add(HttpHeaders headers, ProductDTO productDto);
 
