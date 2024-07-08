@@ -48,8 +48,9 @@ public class PromotionServiceImpl implements PromotionService {
     }
 
     @Override
-    public List<PromotionDto> getPromotions() {
-        return promotionMapper.toPromotionsDto(promotionRepository.findAll());
+    public List<PromotionDto> getPromotions(HttpHeaders headers) {
+        Integer userId = authService.getLoguedUser(headers).getId();
+        return promotionMapper.toPromotionsDto(promotionRepository.findAllByIdUser(userId));
     }
 
     @Override

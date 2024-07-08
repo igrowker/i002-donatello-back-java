@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ICustomerService {
 
-    List<CustomerDTO> getCustomers();
+    List<CustomerDTO> getCustomers(HttpHeaders headers);
 
     CustomerDTO add(HttpHeaders headers, CustomerDTO customerDto);
 

@@ -20,8 +20,8 @@ public class CustomerController {
     ICustomerValidator customerValidator;
 
     @GetMapping
-    public ResponseEntity<?> getCustomers() {
-        return new ResponseEntity<>(customerService.getCustomers(), HttpStatus.OK);
+    public ResponseEntity<?> getCustomers(@RequestHeader HttpHeaders headers) {
+        return new ResponseEntity<>(customerService.getCustomers(headers), HttpStatus.OK);
     }
 
     @PostMapping
