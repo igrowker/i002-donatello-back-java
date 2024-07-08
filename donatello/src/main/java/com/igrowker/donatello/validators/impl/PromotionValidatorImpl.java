@@ -14,7 +14,7 @@ public class PromotionValidatorImpl implements PromotionValidator {
         validateDescription(promotionDto.getDescription());
         validateStartDate(promotionDto.getStartDate());
         validateEndDate(promotionDto.getEndDate());
-        validateUserId(promotionDto.getUserId());
+        // todo se obtiene y validad desde JWT en pasos posteriores => validateUserId(promotionDto.getUserId());
 
     }
 

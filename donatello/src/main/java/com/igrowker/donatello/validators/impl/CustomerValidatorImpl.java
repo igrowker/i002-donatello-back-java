@@ -19,7 +19,7 @@ public class CustomerValidatorImpl implements ICustomerValidator {
         validateName(customerDto.getName());
         validatePhone(customerDto.getPhone());
         validateAddress(customerDto.getAddress());
-        validateUserID(customerDto.getUserID());
+        // todo se obtiene desde JWT luego => validateUserID(customerDto.getUserID());
     }
 
     private void validateName(String name) {
