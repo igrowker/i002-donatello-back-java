@@ -13,7 +13,7 @@ public class PromotionValidatorImpl implements PromotionValidator {
     public void validate(PromotionDto promotionDto) {
         validateDescription(promotionDto.getDescription());
         validateStartDate(promotionDto.getStartDate());
-        validateEndDate(promotionDto.getEndDate());
+        validateEndDate(promotionDto.getStartDate(),promotionDto.getEndDate());
         // todo se obtiene y validad desde JWT en pasos posteriores => validateUserId(promotionDto.getUserId());
 
     }
@@ -30,9 +30,12 @@ public class PromotionValidatorImpl implements PromotionValidator {
         }
     }
 
-    private void validateEndDate(LocalDateTime endDate) {
+    private void validateEndDate(LocalDateTime startDate, LocalDateTime endDate) {
         if (endDate == null ) {
             throw new FieldInvalidException("The EndDate field is required");
+        }
+        if (endDate.isBefore(endDate)) {
+            throw new FieldInvalidException("The EndDate should be later than de StartDate");
         }
     }
 
