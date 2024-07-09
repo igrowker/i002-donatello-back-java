@@ -1,11 +1,11 @@
 package com.igrowker.donatello.services.impl;
 
+import com.igrowker.donatello.auth.entities.CustomUser;
 import com.igrowker.donatello.dtos.AuthDTO;
 import com.igrowker.donatello.utils.JWTUtils;
 import com.igrowker.donatello.dtos.LoginDTO;
 import com.igrowker.donatello.dtos.RegisterDTO;
 import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
-import com.igrowker.donatello.models.CustomUser;
 import com.igrowker.donatello.exceptions.BadCredentialsException;
 import com.igrowker.donatello.exceptions.ConflictException;
 import com.igrowker.donatello.exceptions.FieldInvalidException;

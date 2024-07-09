@@ -1,5 +1,6 @@
 package com.igrowker.donatello.models;
 
+import com.igrowker.donatello.auth.entities.CustomUser;
 import jakarta.persistence.*;
 import lombok.*;
 

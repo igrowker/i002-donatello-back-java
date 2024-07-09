@@ -1,4 +1,4 @@
-package com.igrowker.donatello.models;
+package com.igrowker.donatello.auth.entities;
 
 
 import jakarta.persistence.Column;

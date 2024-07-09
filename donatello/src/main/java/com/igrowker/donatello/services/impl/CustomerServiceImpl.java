@@ -4,7 +4,6 @@ import com.igrowker.donatello.dtos.CustomerDTO;
 import com.igrowker.donatello.exceptions.ForbiddenException;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.CustomerMapper;
-import com.igrowker.donatello.models.CustomUser;
 import com.igrowker.donatello.models.Customer;
 import com.igrowker.donatello.repositories.ICustomerRepository;
 import com.igrowker.donatello.repositories.IUserRepository;

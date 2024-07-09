@@ -1,12 +1,12 @@
 package com.igrowker.donatello.services.impl;
 
+import com.igrowker.donatello.auth.entities.CustomUser;
 import com.igrowker.donatello.dtos.profile.ProfileAddDto;
 import com.igrowker.donatello.dtos.profile.ProfileReadDto;
 import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
 import com.igrowker.donatello.dtos.profile.PublicProfileReadDto;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.ProfileMapper;
-import com.igrowker.donatello.models.CustomUser;
 import com.igrowker.donatello.models.Profile;
 import com.igrowker.donatello.repositories.ProfileRepository;
 import com.igrowker.donatello.services.IAuthService;

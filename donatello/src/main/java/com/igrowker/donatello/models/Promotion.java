@@ -1,6 +1,7 @@
 package com.igrowker.donatello.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.igrowker.donatello.auth.entities.CustomUser;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

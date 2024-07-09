@@ -1,6 +1,6 @@
 package com.igrowker.donatello.dtos.profile;
 
-import com.igrowker.donatello.models.CustomUser;
+import com.igrowker.donatello.auth.entities.CustomUser;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
