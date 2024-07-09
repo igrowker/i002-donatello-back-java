@@ -22,25 +22,26 @@ import java.util.Collection;
 public class CustomUser implements UserDetails  {
     @Id
     @GeneratedValue
+    @Column(name = "id_usuario")
     Integer id;
 
     @Column(nullable = false )
-    String nombre;
+    String name;
 
     @Column(nullable = false , unique = true)
-    String email;
+    String mail;
 
     @Column(nullable = false )
-    String contrasena;
+    String password;
 
     @Column(nullable = false )
-    String telefono;
+    String phone;
 
     /*
     @OneToMany(fetch = FetchType.LAZY)
     Usuarios - Proveedores: (1:N)
     Usuarios - Clientes: (1:N)
-    Usuarios - Productos: (1:N)
+    todo verificar si esta bien que la relacion este en productos, deberia ser OneToMany (1 usuario a muchos productos)? -> Usuarios - Productos: (1:N)
     Usuarios - Menús: (1:N)
     Usuarios - Finanzas: (1:N)
     Usuarios - Promociones: (1:N)
@@ -57,12 +58,12 @@ public class CustomUser implements UserDetails  {
     }
     @Override
     public String getPassword() {
-        return contrasena;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return mail;
     }
 
 }

@@ -1,7 +1,7 @@
 package com.igrowker.donatello.config;
 
-import com.igrowker.donatello.auth.CustomUserDetailsService;
-import com.igrowker.donatello.auth.JWTUtils;
+import com.igrowker.donatello.services.impl.CustomUserDetailsServiceImpl;
+import com.igrowker.donatello.utils.JWTUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,8 +24,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     private JWTUtils jwtUtils;
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
+    private CustomUserDetailsServiceImpl customUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
