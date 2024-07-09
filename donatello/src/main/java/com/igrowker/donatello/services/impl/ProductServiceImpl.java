@@ -1,63 +1,85 @@
 package com.igrowker.donatello.services.impl;
 
-import com.igrowker.donatello.dtos.ProductDto;
+import com.igrowker.donatello.dtos.ProductDTO;
 import com.igrowker.donatello.exceptions.ConflictException;
+import com.igrowker.donatello.exceptions.ForbiddenException;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.ProductMapper;
+import com.igrowker.donatello.models.Customer;
 import com.igrowker.donatello.models.Product;
-import com.igrowker.donatello.repositories.ProductRepository;
-import com.igrowker.donatello.repositories.UserRepository;
-import com.igrowker.donatello.services.ProductService;
-import com.igrowker.donatello.validators.ProductValidator;
+import com.igrowker.donatello.repositories.IProductRepository;
+import com.igrowker.donatello.repositories.IUserRepository;
+import com.igrowker.donatello.services.IAuthService;
+import com.igrowker.donatello.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements IProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private IProductRepository productRepository;
+
+    @Autowired
+    private IUserRepository userRepository;
+
     @Autowired
     private ProductMapper productMapper;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ProductValidator productValidator;
+    IAuthService authService;
+
     @Override
-    public ProductDto save(ProductDto productDto) {
-        productValidator.validate(productDto);
+    public List<ProductDTO> getProducts(HttpHeaders headers) {
+        Integer userId = authService.getLoguedUser(headers).getId();
+        return productMapper.toProductsDto(productRepository.findAllByIdUser(userId));
+    }
+
+    @Override
+    public ProductDTO add(HttpHeaders headers, ProductDTO productDto) {
+        Integer userId = authService.getLoguedUser(headers).getId();
+        productDto.setUserID(userId);
+
         Boolean existsProduct = productRepository.existsByName(productDto.getName());
-        if (!existsProduct){
-           Product product = productMapper.toProduct(productDto);
-           product.setCustomUser(userRepository.getReferenceById(productDto.getUserId()));
-           return productMapper.toProductDto(productRepository.save(product));
-        }else {
+        if (!existsProduct) {
+            Product product = productMapper.toProduct(productDto);
+            product.setCustomUser(userRepository.getReferenceById(productDto.getUserID()));
+            return productMapper.toProductDto(productRepository.save(product));
+        } else {
             throw new ConflictException("The product exists!");
         }
     }
 
     @Override
-    public List<ProductDto> getProducts() {
-        return productMapper.toProductsDto(productRepository.findAll());
-    }
-
-    @Override
-    public ProductDto update(Integer productId, ProductDto productDto) {
-        productValidator.validate(productDto);
+    public ProductDTO update(HttpHeaders headers,Integer productId, ProductDTO productDto) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(()-> new NotFoundException("Product not found!"));
-        product.setCustomUser(userRepository.getReferenceById(productDto.getUserId()));
+                .orElseThrow(() -> new NotFoundException("Product not found!"));
+
+        Integer userId = authService.getLoguedUser(headers).getId();
+        if(! product.getCustomUser().getId().equals(userId)){
+            throw new ForbiddenException("The user cannot update someone else's product.");
+        }
+        productDto.setUserID(userId);
+
+        product.setCustomUser(userRepository.getReferenceById(productDto.getUserID()));
         productMapper.updateProduct(product, productDto);
         return productMapper.toProductDto(productRepository.save(product));
     }
 
     @Override
-    public ProductDto delete(Integer productId) {
+    public ProductDTO delete(HttpHeaders headers,Integer productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(()-> new NotFoundException("Product not found!"));
-        ProductDto productDto = productMapper.toProductDto(product);
+                .orElseThrow(() -> new NotFoundException("Product not found!"));
+
+        Integer userId = authService.getLoguedUser(headers).getId();
+        if(! product.getCustomUser().getId().equals(userId)){
+            throw new ForbiddenException("The user cannot delete someone else's product.");
+        }
+
+        ProductDTO productDto = productMapper.toProductDto(product);
         productRepository.deleteById(productId);
         return productDto;
     }

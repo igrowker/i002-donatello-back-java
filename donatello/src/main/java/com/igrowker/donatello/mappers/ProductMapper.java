@@ -1,6 +1,6 @@
 package com.igrowker.donatello.mappers;
 
-import com.igrowker.donatello.dtos.ProductDto;
+import com.igrowker.donatello.dtos.ProductDTO;
 import com.igrowker.donatello.models.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,14 +11,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-    @Mapping(target = "idUser", source = "userId")
-    Product toProduct(ProductDto productDto);
+    @Mapping(target = "idUser", source = "userID")
+    @Mapping(target = "id", source = "id")
+    Product toProduct(ProductDTO productDto);
 
-    @Mapping(target = "userId", source = "idUser")
-    ProductDto toProductDto(Product product);
+    @Mapping(target = "userID", source = "idUser")
+    @Mapping(target = "id", source = "id")
+    ProductDTO toProductDto(Product product);
 
-    List<ProductDto> toProductsDto(List<Product> products);
+    List<ProductDTO> toProductsDto(List<Product> products);
 
-    @Mapping(source = "userId", target = "idUser")
-    void updateProduct(@MappingTarget Product product, ProductDto productDto);
+    @Mapping(source = "userID", target = "idUser")
+    @Mapping(target = "id", source = "id")
+    void updateProduct(@MappingTarget Product product, ProductDTO productDto);
 }

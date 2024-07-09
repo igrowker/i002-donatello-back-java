@@ -1,8 +1,10 @@
 package com.igrowker.donatello.controllers;
 
-import com.igrowker.donatello.dtos.ProductDto;
-import com.igrowker.donatello.services.ProductService;
+import com.igrowker.donatello.dtos.ProductDTO;
+import com.igrowker.donatello.services.IProductService;
+import com.igrowker.donatello.validators.IProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,25 +16,30 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private IProductService productService;
 
-    @PostMapping("/inventory")
-    public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductDto productDto){
-        return new ResponseEntity<>(productService.save(productDto), HttpStatus.CREATED);
-    }
+    @Autowired
+    private IProductValidator productValidator;
 
     @GetMapping("/inventory")
-    public ResponseEntity<List<ProductDto>> getProducts(){
-        return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
+    public ResponseEntity<List<ProductDTO>> getProducts(@RequestHeader HttpHeaders headers) {
+        return new ResponseEntity<>(productService.getProducts(headers), HttpStatus.OK);
+    }
+
+    @PostMapping("/inventory")
+    public ResponseEntity<ProductDTO> addProduct(@RequestHeader HttpHeaders headers, @RequestBody ProductDTO productDto) {
+        productValidator.validate(productDto);
+        return new ResponseEntity<>(productService.add(headers, productDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/inventory/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Integer id, @RequestBody ProductDto productDto){
-        return new ResponseEntity<>(productService.update(id, productDto), HttpStatus.OK);
+    public ResponseEntity<ProductDTO> updateProduct(@RequestHeader HttpHeaders headers, @PathVariable Integer id, @RequestBody ProductDTO productDto) {
+        productValidator.validate(productDto);
+        return new ResponseEntity<>(productService.update(headers,id, productDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/inventory/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Integer id){
-        return new ResponseEntity<>(productService.delete(id), HttpStatus.OK);
+    public ResponseEntity<?> deleteProduct(@RequestHeader HttpHeaders headers,@PathVariable Integer id) {
+        return new ResponseEntity<>(productService.delete(headers,id), HttpStatus.OK);
     }
 }

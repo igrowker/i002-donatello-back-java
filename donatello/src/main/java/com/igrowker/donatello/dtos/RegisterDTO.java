@@ -1,4 +1,4 @@
-package com.igrowker.donatello.auth;
+package com.igrowker.donatello.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class RegisterRequest {
+public class RegisterDTO {
     @NotNull(message = "Nombre no puede ser nulo")
     @Size(min=2, max=30, message = "Nombre debe tener entre 2 y 30 caracteres")
     String name;

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class PromotionDto {
+    private Integer id;
 
     private String description;
 

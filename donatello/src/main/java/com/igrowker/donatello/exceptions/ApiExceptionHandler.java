@@ -16,7 +16,6 @@ public class ApiExceptionHandler {
     public ErrorMessage notFoundRequest(HttpServletRequest request, Exception exception) {
         return new ErrorMessage(exception, request.getRequestURI());
     }
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({BadCredentialsException.class})
     @ResponseBody

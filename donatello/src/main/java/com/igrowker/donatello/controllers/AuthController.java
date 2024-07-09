@@ -1,13 +1,12 @@
 package com.igrowker.donatello.controllers;
 
-import com.igrowker.donatello.auth.AuthResponse;
-import com.igrowker.donatello.auth.LoginRequest;
-import com.igrowker.donatello.auth.RegisterRequest;
-import com.igrowker.donatello.services.AuthService;
+import com.igrowker.donatello.dtos.AuthDTO;
+import com.igrowker.donatello.dtos.LoginDTO;
+import com.igrowker.donatello.dtos.RegisterDTO;
+import com.igrowker.donatello.services.impl.AuthServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
     @Autowired
-    private AuthService authService;
+    private AuthServiceImpl authService;
 
     @GetMapping("protegido")
     public ResponseEntity<String> protegido (){
@@ -26,13 +25,13 @@ public class AuthController {
     }
 
     @PostMapping("auth/login")
-    public ResponseEntity<AuthResponse> login (@Valid @RequestBody LoginRequest loginRequest){
-        return new ResponseEntity<>(authService.login(loginRequest), HttpStatus.OK);
+    public ResponseEntity<AuthDTO> login (@Valid @RequestBody LoginDTO loginDTO){
+        return new ResponseEntity<>(authService.login(loginDTO), HttpStatus.OK);
     }
 
     @PostMapping("auth/register")
-    public ResponseEntity<AuthResponse> register (@Valid @RequestBody RegisterRequest registerRequest){
-        return new ResponseEntity<>(authService.register(registerRequest), HttpStatus.CREATED);
+    public ResponseEntity<AuthDTO> register (@Valid @RequestBody RegisterDTO registerDTO){
+        return new ResponseEntity<>(authService.register(registerDTO), HttpStatus.CREATED);
     }
 
 }

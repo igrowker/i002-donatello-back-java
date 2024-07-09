@@ -7,7 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductDto {
+public class ProductDTO {
+
+    private Integer id;
 
     private String name;
 
@@ -15,5 +17,6 @@ public class ProductDto {
 
     private Integer stock;
 
-    private Integer userId;
+    private Integer userID;
 }
+

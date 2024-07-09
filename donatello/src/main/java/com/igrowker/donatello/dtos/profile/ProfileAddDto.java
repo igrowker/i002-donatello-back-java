@@ -1,6 +1,6 @@
 package com.igrowker.donatello.dtos.profile;
 
-import com.igrowker.donatello.models.CustomUser;
+import com.igrowker.donatello.auth.entities.CustomUser;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,25 +19,25 @@ public class ProfileAddDto {
     // No necesario para crear perfil, ya esta en usuario => String contrasena;
     CustomUser user;
 
-    @NotNull(message = "Nombre de empresa no puede ser nulo.")
-    @Size(min=2, max=30, message = "Nombre de empresa debe tener entre 2 y 30 caracteres")
+    @NotNull(message = "Company name cannot be null.")
+    @Size(min=2, max=30, message = "Company name must be between 2 and 30 characters")
     String companyName;
 
-    @NotNull(message = "Direccion no puede ser nula.")
-    @Size(min=2, max=30, message = "Direccion debe tener entre 2 y 30 caracteres")
+    @NotNull(message = "Address cannot be null.")
+    @Size(min=2, max=30, message = "Address must be between 2 and 30 characters")
     String address;
 
     String addressDetails;
 
-    @NotNull(message = "Ciudad no puede ser nula.")
-    @Size(min=2, max=30, message = "Ciudad debe tener entre 2 y 30 caracteres")
+    @NotNull(message = "City cannot be null.")
+    @Size(min=2, max=30, message = "City must be between 2 and 30 characters")
     String city;
 
-    @NotNull(message = "Codigo postal no puede ser nulo.")
-    @Size(min=2, max=30, message = "Codigo postal debe tener entre 2 y 30 caracteres")
+    @NotNull(message = "Postal code cannot be null.")
+    @Size(min=2, max=30, message = "Postal code must be between 2 and 30 characters")
     String postalCode;
 
-    @NotNull(message = "Pais no puede ser nulo.")
-    @Size(min=2, max=30, message = "Pais debe tener entre 2 y 30 caracteres")
+    @NotNull(message = "Country cannot be null.")
+    @Size(min=2, max=30, message = "Country must be between 2 and 30 characters")
     String country;
 }

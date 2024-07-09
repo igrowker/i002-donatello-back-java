@@ -12,13 +12,16 @@ import java.util.List;
 public interface PromotionMapper {
 
     @Mapping(target = "idUser", source = "userId")
+    @Mapping(target = "id", source = "id")
     Promotion toPromotion(PromotionDto promotionDto);
 
     @Mapping(target = "userId", source = "idUser")
+    @Mapping(target = "id", source = "id")
     PromotionDto toPromotionDto(Promotion promotion);
 
     List<PromotionDto> toPromotionsDto(List<Promotion> promotions);
 
     @Mapping(source = "userId", target = "idUser")
+    @Mapping(target = "id", source = "id")
     void updatePromotion(@MappingTarget Promotion promotion, PromotionDto promotionDto);
 }

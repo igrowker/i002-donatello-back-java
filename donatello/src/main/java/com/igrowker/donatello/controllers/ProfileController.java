@@ -4,7 +4,7 @@ import com.igrowker.donatello.dtos.profile.ProfileAddDto;
 import com.igrowker.donatello.dtos.profile.ProfileReadDto;
 import com.igrowker.donatello.dtos.profile.ProfileUpdateDto;
 import com.igrowker.donatello.dtos.profile.PublicProfileReadDto;
-import com.igrowker.donatello.services.ProfileService;
+import com.igrowker.donatello.services.impl.ProfileServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProfileController {
     @Autowired
-    ProfileService profileService;
+    ProfileServiceImpl profileService;
 
     @GetMapping("/{idUser}")
     public ResponseEntity<PublicProfileReadDto> getPublicProfile (@PathVariable Integer idUser){

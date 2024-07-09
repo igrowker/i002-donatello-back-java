@@ -1,16 +1,17 @@
 package com.igrowker.donatello.services;
 
 import com.igrowker.donatello.dtos.PromotionDto;
+import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
 public interface PromotionService {
 
-    PromotionDto save(PromotionDto promotionDto);
+    PromotionDto save(HttpHeaders headers,PromotionDto promotionDto);
 
-    List<PromotionDto> getPromotions();
+    List<PromotionDto> getPromotions(HttpHeaders headers);
 
-    PromotionDto update(Integer id, PromotionDto promotionDto);
+    PromotionDto update(HttpHeaders headers,Integer id, PromotionDto promotionDto);
 
-    PromotionDto delete(Integer id);
+    PromotionDto delete(HttpHeaders headers,Integer id);
 }
