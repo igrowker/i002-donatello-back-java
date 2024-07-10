@@ -1,12 +1,12 @@
 package com.igrowker.donatello.repositories;
 
-import com.igrowker.donatello.models.Menu;
+import com.igrowker.donatello.models.Promotion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Integer> {
-    List<Menu> findByIdUser(Integer userId);
+public interface IPromotionRepository extends JpaRepository<Promotion, Integer> {
+    List<Promotion> findAllByIdUser(Integer idUser);
 }

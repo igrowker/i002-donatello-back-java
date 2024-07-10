@@ -5,7 +5,7 @@ import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
-public interface MenuService {
+public interface IMenuService {
 
     MenuDto save(HttpHeaders headers, MenuDto menuDto);
 

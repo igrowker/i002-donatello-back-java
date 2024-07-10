@@ -9,11 +9,11 @@ import com.igrowker.donatello.models.Menu;
 import com.igrowker.donatello.models.MenuProduct;
 import com.igrowker.donatello.models.MenuProductPK;
 import com.igrowker.donatello.models.Product;
-import com.igrowker.donatello.repositories.MenuProductRepository;
-import com.igrowker.donatello.repositories.MenuRepository;
-import com.igrowker.donatello.repositories.ProductRepository;
-import com.igrowker.donatello.services.AuthService;
-import com.igrowker.donatello.services.MenuService;
+import com.igrowker.donatello.repositories.IMenuProductRepository;
+import com.igrowker.donatello.repositories.IMenuRepository;
+import com.igrowker.donatello.repositories.IProductRepository;
+import com.igrowker.donatello.services.IAuthService;
+import com.igrowker.donatello.services.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -24,18 +24,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl implements IMenuService {
 
     @Autowired
-    private MenuRepository menuRepository;
+    private IMenuRepository menuRepository;
     @Autowired
     private MenuMapper menuMapper;
     @Autowired
-    private ProductRepository productRepository;
+    private IProductRepository productRepository;
     @Autowired
-    private MenuProductRepository menuProductRepository;
+    private IMenuProductRepository menuProductRepository;
     @Autowired
-    private AuthService authService;
+    private IAuthService authService;
 
     @Override
     public MenuDto save(HttpHeaders headers, MenuDto menuDto) {

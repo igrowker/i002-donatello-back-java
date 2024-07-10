@@ -1,7 +1,7 @@
 package com.igrowker.donatello.controllers;
 
 import com.igrowker.donatello.dtos.MenuDto;
-import com.igrowker.donatello.services.MenuService;
+import com.igrowker.donatello.services.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MenuController {
 
     @Autowired
-    private MenuService menuService;
+    private IMenuService menuService;
 
     @PostMapping("/menu")
     public ResponseEntity<MenuDto> saveMenu(@RequestHeader HttpHeaders headers, @RequestBody MenuDto menuDto){
