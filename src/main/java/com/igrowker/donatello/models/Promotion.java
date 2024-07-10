@@ -14,30 +14,30 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "promociones")
+@Table(name = "promotions")
 public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_promocion")
+    @Column(name = "id_promotion")
     private Integer id;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "fecha_inicio", nullable = false)
+    @Column(name = "start_date", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedDate
     private LocalDateTime startDate;
 
-    @Column(name = "fecha_fin", nullable = false)
+    @Column(name = "end_date", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endDate;
 
-    @Column(name = "id_usuario")
+    @Column(name = "user_id")
     private Integer idUser;
 
     @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private CustomUser customUser;
 }

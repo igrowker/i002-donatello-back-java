@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "perfiles")
+@Entity(name = "profiles")
 public class Profile {
     @Id
     @GeneratedValue
-    @Column(name = "id_perfil")
+    @Column(name = "id_profile")
     Integer id;
 
     @OneToOne
-    @JoinColumn(name="usuario", referencedColumnName="id_usuario")
+    @JoinColumn(name="user_id", referencedColumnName="user_id")
     private CustomUser user;
 
     @Column(nullable = false )
