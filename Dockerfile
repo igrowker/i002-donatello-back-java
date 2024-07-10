@@ -5,7 +5,7 @@ COPY donatello/pom.xml ./
 RUN mvn dependency:go-offline
 
 COPY donatello/src ./src
-RUN mvn package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Etapa 2: Preparación de la imagen de producción
 FROM openjdk:17-jdk-slim AS runner
