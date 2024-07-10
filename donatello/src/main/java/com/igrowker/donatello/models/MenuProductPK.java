@@ -15,6 +15,6 @@ public class MenuProductPK implements Serializable {
     @Column(name = "id_menu")
     private Integer idMenu;
 
-    @Column(name = "id_producto")
+    @Column(name = "id_product")
     private Integer idProduct;
 }

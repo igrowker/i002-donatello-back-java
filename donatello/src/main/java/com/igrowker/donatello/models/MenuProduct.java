@@ -9,13 +9,13 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "menu_productos")
+@Table(name = "menu_products")
 public class MenuProduct {
 
     @EmbeddedId
     private MenuProductPK id;
 
-    @Column(name = "cantidad", nullable = false)
+    @Column(name = "amount", nullable = false)
     private Integer amount;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
@@ -24,6 +24,6 @@ public class MenuProduct {
     private Menu menu;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+    @JoinColumn(name = "id_product", insertable = false, updatable = false)
     private Product product;
 }

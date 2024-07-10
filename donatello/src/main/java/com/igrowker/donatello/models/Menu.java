@@ -1,5 +1,6 @@
 package com.igrowker.donatello.models;
 
+import com.igrowker.donatello.auth.entities.CustomUser;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,17 +20,17 @@ public class Menu {
     @Column(name = "id_menu")
     private Integer id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "id_usuario")
+    @Column(name = "user_id")
     private Integer idUser;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private CustomUser customUser;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
