@@ -26,9 +26,6 @@ public interface MenuMapper {
 
     List<MenuDto> toMenusDto(List<Menu> menus);
 
-    @Mappings({
-            @Mapping(source = "userId", target = "idUser"),
-            @Mapping(source = "menuProductDto", target = "menuProducts")
-    })
+    //@Mapping(source = "userId", target = "idUser")
     void updateMenu(@MappingTarget Menu menu, MenuDto menuDto);
 }
