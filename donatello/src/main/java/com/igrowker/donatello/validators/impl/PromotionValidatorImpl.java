@@ -34,7 +34,7 @@ public class PromotionValidatorImpl implements IPromotionValidator {
         if (endDate == null ) {
             throw new FieldInvalidException("The EndDate field is required");
         }
-        if (endDate.isBefore(endDate)) {
+        if (endDate.isBefore(startDate)) {
             throw new FieldInvalidException("The EndDate should be later than de StartDate");
         }
     }
