@@ -18,11 +18,11 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "usuarios")
+@Entity(name = "users")
 public class CustomUser implements UserDetails  {
     @Id
     @GeneratedValue
-    @Column(name = "id_usuario")
+    @Column(name = "user_id")
     Integer id;
 
     @Column(nullable = false )
