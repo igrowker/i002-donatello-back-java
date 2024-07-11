@@ -14,6 +14,7 @@ import com.igrowker.donatello.repositories.IMenuRepository;
 import com.igrowker.donatello.repositories.IProductRepository;
 import com.igrowker.donatello.services.IAuthService;
 import com.igrowker.donatello.services.IMenuService;
+import com.igrowker.donatello.validators.IMenuValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -36,9 +37,14 @@ public class MenuServiceImpl implements IMenuService {
     private IMenuProductRepository menuProductRepository;
     @Autowired
     private IAuthService authService;
+    @Autowired
+    private IMenuValidator menuValidator;
 
     @Override
     public MenuDto save(HttpHeaders headers, MenuDto menuDto) {
+        // Validar los campos del menu
+        menuValidator.validate(menuDto);
+
         // Pasar el idUser desde el token obtenido en el headers
         menuDto.setUserId(authService.getLoguedUser(headers).getId());
         Menu menu = menuMapper.toMenu(menuDto);
@@ -49,7 +55,6 @@ public class MenuServiceImpl implements IMenuService {
             // Buscar el producto por su ID
             Product product = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
-
             // Actualizar el stock del producto
             product.setStock(product.getStock() - menuProduct.getAmount());
             productRepository.save(product);
@@ -70,6 +75,8 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public MenuDto update(HttpHeaders headers,Integer id, MenuDto menuDto) {
+        // Validar los campos del menu
+        menuValidator.validate(menuDto);
 
         // Verificar que el menú a actualizar existe
         Menu existsMenu = menuRepository.findById(id)
@@ -154,7 +161,7 @@ public class MenuServiceImpl implements IMenuService {
         }
 
         // Usar el mapper para actualizar el menú
-        // menuMapper.updateMenu(existingMenu, menuDto);
+         menuMapper.updateMenu(existsMenu, menuDto);
 
         // Guardar el menú actualizado
         return menuMapper.toMenuDto(menuRepository.save(existsMenu));
