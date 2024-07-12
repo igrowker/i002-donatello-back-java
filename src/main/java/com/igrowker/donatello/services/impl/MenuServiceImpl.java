@@ -76,6 +76,7 @@ public class MenuServiceImpl implements IMenuService {
     @Override
     public MenuDto update(HttpHeaders headers,Integer id, MenuDto menuDto) {
         // Validar los campos del menu
+        menuDto.setId(id);
         menuValidator.validate(menuDto);
 
         // Verificar que el menú a actualizar existe
@@ -100,7 +101,7 @@ public class MenuServiceImpl implements IMenuService {
         List<MenuProduct> productsToRemove = new ArrayList<>();
         for (MenuProduct menuProduct : existsMenu.getMenuProducts()) {
             Integer productId = menuProduct.getProduct().getId();
-            if (!menuProductDtoMap.containsKey(productId)) {
+            if (!menuProductDtoMap.containsKey(productId)) { // todo se refiere a un producto que estaba en el menu pero se va a eliminar del menu, por eso se descuenta del stock..
                 // Ajustar el stock del producto eliminado
                 Product product = menuProduct.getProduct();
                 product.setStock(product.getStock() + menuProduct.getAmount());
