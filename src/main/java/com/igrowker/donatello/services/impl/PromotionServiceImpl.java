@@ -5,11 +5,11 @@ import com.igrowker.donatello.exceptions.ForbiddenException;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.PromotionMapper;
 import com.igrowker.donatello.models.Promotion;
-import com.igrowker.donatello.repositories.PromotionRepository;
+import com.igrowker.donatello.repositories.IPromotionRepository;
 import com.igrowker.donatello.repositories.IUserRepository;
 import com.igrowker.donatello.services.IAuthService;
-import com.igrowker.donatello.services.PromotionService;
-import com.igrowker.donatello.validators.PromotionValidator;
+import com.igrowker.donatello.services.IPromotionService;
+import com.igrowker.donatello.validators.IPromotionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class PromotionServiceImpl implements PromotionService {
+public class PromotionServiceImpl implements IPromotionService {
 
     @Autowired
-    private PromotionRepository promotionRepository;
+    private IPromotionRepository promotionRepository;
 
     @Autowired
     private IUserRepository userRepository;
@@ -30,7 +30,7 @@ public class PromotionServiceImpl implements PromotionService {
     private PromotionMapper promotionMapper;
 
     @Autowired
-    private PromotionValidator promotionValidator;
+    private IPromotionValidator promotionValidator;
     @Autowired
     IAuthService authService;
 
