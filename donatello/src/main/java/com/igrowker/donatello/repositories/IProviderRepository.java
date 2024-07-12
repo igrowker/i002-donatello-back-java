@@ -9,4 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IProviderRepository extends JpaRepository<ProviderEntity,Long> {
+    List<ProviderEntity> findAllByUserId(Integer userId);
+
 }
