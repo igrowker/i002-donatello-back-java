@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface IProviderService {
-    List<ProviderDTO> getProviders(HttpHeaders headers);
+    List<ProviderDTO> getAll(HttpHeaders headers, ProviderDTO providerDTO);
 
-    ProviderDTO add(HttpHeaders headers, ProviderDTO providerDTO);
+    void save(HttpHeaders headers ,ProviderDTO providerDTO);
 
-    ProviderDTO update(HttpHeaders headers,Long providerId, ProviderDTO providerDTO);
+    ProviderDTO FindById(Long Id);
 
-    ProviderDTO delete(HttpHeaders headers,Long providerId);
+    void Update(Long Id, ProviderDTO providerDTO);
 
+    void DeleteById(Long id);
 }

@@ -28,6 +28,6 @@ public class ProviderEntity {
             name = "ID_User",
             referencedColumnName = "id"
     )
-    private CustomUser User;
+    private CustomUser userId;
 
 }

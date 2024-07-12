@@ -11,5 +11,5 @@ public class ProviderDTO {
     private String name;
     private String contact;
     private String address;
-    private CustomUser user;
+    private Integer user;
 }
