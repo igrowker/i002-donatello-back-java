@@ -10,7 +10,7 @@ import com.igrowker.donatello.services.IProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
+
 import java.util.List;
 @Service
 public class ProviderServiceIMPL implements IProviderService {
@@ -32,9 +32,9 @@ public class ProviderServiceIMPL implements IProviderService {
     @Override
     public ProviderDTO save(HttpHeaders headers, ProviderDTO providerDTO) {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
-        providerDTO.setUser(userId);
+        providerDTO.setUserId(userId);
         ProviderEntity provider = providerMapper.ProviderDtoToProvider(providerDTO);
-        provider.setUserId(iUserRepository.getReferenceById(providerDTO.getUser()));
+        provider.setUser(iUserRepository.getReferenceById(providerDTO.getUserId()));
         return providerMapper.ProviderToProviderDTO(iProviderRepository.save(provider));
     }
 
@@ -43,8 +43,8 @@ public class ProviderServiceIMPL implements IProviderService {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
         ProviderEntity provider = iProviderRepository.findById(Id)
                 .orElseThrow(()-> new BadRequestException("The provider doesnt exist"));
-        if(provider.getUserId().getId().equals(userId)){
-            provider.setUserId(iUserRepository.getReferenceById(userId));
+        if(provider.getUser().getId().equals(userId)){
+            provider.setUser(iUserRepository.getReferenceById(userId));
             providerMapper.updateProvider(provider,providerDTO);
             return providerMapper.ProviderToProviderDTO(iProviderRepository.save(provider));
         }
@@ -56,7 +56,7 @@ public class ProviderServiceIMPL implements IProviderService {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
         ProviderEntity provider = iProviderRepository.findById(id)
                 .orElseThrow(()-> new BadRequestException("The provider doesnt exist"));
-        if (provider.getUserId().getId().equals(userId)){
+        if (provider.getUser().getId().equals(userId)){
             ProviderDTO providerDTO = providerMapper.ProviderToProviderDTO(provider);
             iProviderRepository.deleteById(providerDTO.getId());
         }

@@ -1,6 +1,5 @@
 package com.igrowker.donatello.dtos;
 
-import com.igrowker.donatello.auth.entities.CustomUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +13,5 @@ public class ProviderDTO {
     private String name;
     private String contact;
     private String address;
-    private Integer user;
+    private Integer userId;
 }
