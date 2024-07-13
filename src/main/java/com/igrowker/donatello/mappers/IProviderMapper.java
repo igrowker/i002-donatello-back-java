@@ -22,8 +22,8 @@ public interface IProviderMapper {
 
 
     // todo VERIFICAR FUNCIONAMIENTO DE ESTE MAPPER
-    @Mapping(target = "user.id", source = "userId")
-    @Mapping(target = "id",source = "id")
+    //@Mapping(target = "user.id", source = "userId")
+    //@Mapping(target = "id",source = "id")
     void updateProvider(@MappingTarget ProviderEntity provider, ProviderDTO providerDTO);
 
 

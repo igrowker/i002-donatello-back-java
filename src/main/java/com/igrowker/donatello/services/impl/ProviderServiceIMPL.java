@@ -41,10 +41,12 @@ public class ProviderServiceIMPL implements IProviderService {
     @Override
     public ProviderDTO Update(HttpHeaders headers , Long Id, ProviderDTO providerDTO) {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
+        providerDTO.setId(Id); // evita error de usuario null
         ProviderEntity provider = iProviderRepository.findById(Id)
                 .orElseThrow(()-> new BadRequestException("The provider doesnt exist"));
+
         if(provider.getUser().getId().equals(userId)){
-            provider.setUser(iUserRepository.getReferenceById(userId));
+            // todo porque setea nuevamente el usuario? provider.setUser(iUserRepository.getReferenceById(userId));
             providerMapper.updateProvider(provider,providerDTO);
             return providerMapper.ProviderToProviderDTO(iProviderRepository.save(provider));
         }
