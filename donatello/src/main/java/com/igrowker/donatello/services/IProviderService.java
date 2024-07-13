@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface IProviderService {
-    List<ProviderDTO> getAll(HttpHeaders headers, ProviderDTO providerDTO);
+    List<ProviderDTO> getAll(HttpHeaders headers);
 
     ProviderDTO save(HttpHeaders headers ,ProviderDTO providerDTO);
 

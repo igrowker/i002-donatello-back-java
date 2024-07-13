@@ -24,7 +24,7 @@ public class ProviderServiceIMPL implements IProviderService {
     IProviderMapper providerMapper;
 
     @Override
-    public List<ProviderDTO> getAll(HttpHeaders headers, ProviderDTO providerDTO) {
+    public List<ProviderDTO> getAll(HttpHeaders headers) {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
         return providerMapper.ProviderToProviderDtoList(iProviderRepository.findAllByUserId(userId));
     }
