@@ -10,11 +10,11 @@ import java.util.List;
 public interface IProviderService {
     List<ProviderDTO> getAll(HttpHeaders headers, ProviderDTO providerDTO);
 
-    void save(HttpHeaders headers ,ProviderDTO providerDTO);
+    ProviderDTO save(HttpHeaders headers ,ProviderDTO providerDTO);
 
     ProviderDTO FindById(Long Id);
 
-    void Update(Long Id, ProviderDTO providerDTO);
+    ProviderDTO Update(Long Id, ProviderDTO providerDTO);
 
     void DeleteById(Long id);
 }
