@@ -2,7 +2,7 @@ package com.igrowker.donatello.validators;
 
 import com.igrowker.donatello.dtos.PromotionDto;
 
-public interface PromotionValidator {
+public interface IPromotionValidator {
 
     void validate(PromotionDto promotionDto);
 }

@@ -1,7 +1,7 @@
 package com.igrowker.donatello.controllers;
 
 import com.igrowker.donatello.dtos.PromotionDto;
-import com.igrowker.donatello.services.PromotionService;
+import com.igrowker.donatello.services.IPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 public class PromotionController {
 
     @Autowired
-    private PromotionService promotionService;
+    private IPromotionService promotionService;
 
     @PostMapping("/promotions")
     public ResponseEntity<PromotionDto> savePromotion(@RequestHeader HttpHeaders headers, @RequestBody PromotionDto promotionDto){

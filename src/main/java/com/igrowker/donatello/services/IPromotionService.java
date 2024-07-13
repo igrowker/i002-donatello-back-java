@@ -5,7 +5,7 @@ import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
-public interface PromotionService {
+public interface IPromotionService {
 
     PromotionDto save(HttpHeaders headers,PromotionDto promotionDto);
 

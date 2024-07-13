@@ -8,7 +8,7 @@ import com.igrowker.donatello.dtos.profile.PublicProfileReadDto;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.ProfileMapper;
 import com.igrowker.donatello.models.Profile;
-import com.igrowker.donatello.repositories.ProfileRepository;
+import com.igrowker.donatello.repositories.IProfileRepository;
 import com.igrowker.donatello.services.IAuthService;
 import com.igrowker.donatello.services.IProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ProfileServiceImpl implements IProfileService {
     ProfileMapper profileMapper;
 
     @Autowired
-    ProfileRepository profileRepository;
+    IProfileRepository profileRepository;
 
     @Autowired
     IAuthService authService;
@@ -52,6 +52,7 @@ public class ProfileServiceImpl implements IProfileService {
 
     public ProfileReadDto getProfile(HttpHeaders headers) {
         CustomUser user = authService.getLoguedUser(headers);
+        if(profileRepository.findByIdUser(user.getId()).isEmpty()) return createEmptyProfile(user);
         return profileMapper.toReadDto(getProfileByIdUser(user.getId()));
     }
 
@@ -67,6 +68,10 @@ public class ProfileServiceImpl implements IProfileService {
             return profileMapper.toReadDto(profileRepository.save(profileMapper.toEntity(addDto)));
         }
         return null;
+    }
+    public ProfileReadDto createEmptyProfile(CustomUser user){
+        Profile profile = new Profile(null,user,"","","","","","");
+        return profileMapper.toReadDto(profileRepository.save(profile));
     }
 
     public ProfileReadDto editProfile(HttpHeaders headers, ProfileUpdateDto updateDto) {

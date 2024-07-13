@@ -2,13 +2,13 @@ package com.igrowker.donatello.validators.impl;
 
 import com.igrowker.donatello.dtos.PromotionDto;
 import com.igrowker.donatello.exceptions.FieldInvalidException;
-import com.igrowker.donatello.validators.PromotionValidator;
+import com.igrowker.donatello.validators.IPromotionValidator;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
-public class PromotionValidatorImpl implements PromotionValidator {
+public class PromotionValidatorImpl implements IPromotionValidator {
     @Override
     public void validate(PromotionDto promotionDto) {
         validateDescription(promotionDto.getDescription());
@@ -34,7 +34,7 @@ public class PromotionValidatorImpl implements PromotionValidator {
         if (endDate == null ) {
             throw new FieldInvalidException("The EndDate field is required");
         }
-        if (endDate.isBefore(endDate)) {
+        if (endDate.isBefore(startDate)) {
             throw new FieldInvalidException("The EndDate should be later than de StartDate");
         }
     }
