@@ -10,17 +10,19 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface IProviderMapper {
-    @Mapping(target = "userId", source = "user")
+    @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "id", source = "id")
     ProviderDTO ProviderToProviderDTO(ProviderEntity providerEntity);
 
-    @Mapping(target = "user",source = "userId")
+    @Mapping(target = "user.id",source = "userId")
     @Mapping(target = "id",source = "id")
     ProviderEntity ProviderDtoToProvider(ProviderDTO providerDTO);
 
     List<ProviderDTO> ProviderToProviderDtoList(List<ProviderEntity> providerEntities);
 
-    @Mapping(target = "user", source = "userId")
+
+    // todo VERIFICAR FUNCIONAMIENTO DE ESTE MAPPER
+    @Mapping(target = "user.id", source = "userId")
     @Mapping(target = "id",source = "id")
     void updateProvider(@MappingTarget ProviderEntity provider, ProviderDTO providerDTO);
 
