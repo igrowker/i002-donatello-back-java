@@ -12,9 +12,7 @@ public interface IProviderService {
 
     ProviderDTO save(HttpHeaders headers ,ProviderDTO providerDTO);
 
-    ProviderDTO FindById(Long Id);
+    ProviderDTO Update(HttpHeaders headers ,Long Id, ProviderDTO providerDTO);
 
-    ProviderDTO Update(Long Id, ProviderDTO providerDTO);
-
-    void DeleteById(Long id);
+    void DeleteById( HttpHeaders headers,Long id);
 }
