@@ -52,6 +52,7 @@ public class ProfileServiceImpl implements IProfileService {
 
     public ProfileReadDto getProfile(HttpHeaders headers) {
         CustomUser user = authService.getLoguedUser(headers);
+        if(profileRepository.findByIdUser(user.getId()).isEmpty()) return createEmptyProfile(user);
         return profileMapper.toReadDto(getProfileByIdUser(user.getId()));
     }
 
@@ -67,6 +68,10 @@ public class ProfileServiceImpl implements IProfileService {
             return profileMapper.toReadDto(profileRepository.save(profileMapper.toEntity(addDto)));
         }
         return null;
+    }
+    public ProfileReadDto createEmptyProfile(CustomUser user){
+        Profile profile = new Profile(null,user,"","","","","","");
+        return profileMapper.toReadDto(profileRepository.save(profile));
     }
 
     public ProfileReadDto editProfile(HttpHeaders headers, ProfileUpdateDto updateDto) {

@@ -13,10 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProfileAddDto {
-    // No necesario para crear perfil, ya esta en usuario => String nombre;
-    // No necesario para crear perfil, ya esta en usuario => String email;
-    // No necesario para crear perfil, ya esta en usuario => String telefono;
-    // No necesario para crear perfil, ya esta en usuario => String contrasena;
     CustomUser user;
 
     @NotNull(message = "Company name cannot be null.")

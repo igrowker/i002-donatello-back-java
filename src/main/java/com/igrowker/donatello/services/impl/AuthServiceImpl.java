@@ -52,6 +52,7 @@ public class AuthServiceImpl implements IAuthService {
                 .phone(registerDTO.getPhone())
                 .build();
         userRepository.save(user);
+
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(registerDTO.getMail(),
                         registerDTO.getPassword()));
