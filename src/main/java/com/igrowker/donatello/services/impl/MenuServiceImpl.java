@@ -55,9 +55,9 @@ public class MenuServiceImpl implements IMenuService {
             // Buscar el producto por su ID
             Product product = productRepository.findById(productId)
                     .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
-            // Actualizar el stock del producto
-            product.setStock(product.getStock() - menuProduct.getAmount());
-            productRepository.save(product);
+            //todo inicialmente no habra ecomerce! =>  Actualizar el stock del producto
+            //todo inicialmente no habra ecomerce! =>  product.setStock(product.getStock() - menuProduct.getAmount());
+            //todo inicialmente no habra ecomerce! =>  productRepository.save(product);
 
             // Asignar el producto y el menú a MenuProduct
             menuProduct.setProduct(product);
@@ -104,7 +104,7 @@ public class MenuServiceImpl implements IMenuService {
             if (!menuProductDtoMap.containsKey(productId)) { // todo se refiere a un producto que estaba en el menu pero se va a eliminar del menu, por eso se descuenta del stock..
                 // Ajustar el stock del producto eliminado
                 Product product = menuProduct.getProduct();
-                product.setStock(product.getStock() + menuProduct.getAmount());
+                //todo inicialmente no habra ecomerce! =>  product.setStock(product.getStock() + menuProduct.getAmount());
                 productRepository.save(product);
                 productsToRemove.add(menuProduct); // Marcar el producto para eliminación
             }
@@ -134,8 +134,8 @@ public class MenuServiceImpl implements IMenuService {
                 int newAmount = menuProductDto.getAmount();
 
                 if (oldAmount != newAmount) {
-                    product.setStock(product.getStock() + oldAmount - newAmount);
-                    productRepository.save(product);
+                    //todo inicialmente no habra ecomerce! =>  product.setStock(product.getStock() + oldAmount - newAmount);
+                    //todo inicialmente no habra ecomerce! =>  productRepository.save(product);
                 }
 
                 // Actualizar la cantidad del producto en el menú
@@ -185,9 +185,9 @@ public class MenuServiceImpl implements IMenuService {
 
         // Ajustar el stock de los productos en el menú
         for (MenuProduct menuProduct : menu.getMenuProducts()) {
-            Product product = menuProduct.getProduct();
-            product.setStock(product.getStock() + menuProduct.getAmount());
-            productRepository.save(product);
+            //todo inicialmente no habra ecomerce! =>  Product product = menuProduct.getProduct();
+            //todo inicialmente no habra ecomerce! =>  product.setStock(product.getStock() + menuProduct.getAmount());
+            //todo inicialmente no habra ecomerce! =>  productRepository.save(product);
         }
 
         // Eliminar los productos del menú
