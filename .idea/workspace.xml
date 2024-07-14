@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="819d9091-654b-4e6d-92c3-0e7c59f76118" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/config/JWTAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/config/JWTAuthFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/exceptions/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/exceptions/ApiExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/mappers/IProviderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/mappers/IProviderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/models/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProviderServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProviderServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/mappers/.gitkeep" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
