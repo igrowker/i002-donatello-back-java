@@ -11,5 +11,7 @@ public interface IFinancesService {
     FinanceDTO edit(HttpHeaders headers, Integer id, FinanceDTO dto);
     FinanceDTO delete(HttpHeaders headers, Integer id);
     FinanceDTO getById(HttpHeaders headers, Integer id);
+    List<FinanceDTO> getReports(HttpHeaders headers);
+
 
 }

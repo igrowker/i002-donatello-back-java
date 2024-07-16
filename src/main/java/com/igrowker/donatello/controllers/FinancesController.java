@@ -42,4 +42,8 @@ public class FinancesController {
     public ResponseEntity<FinanceDTO> delete(@RequestHeader HttpHeaders headers, @PathVariable Integer id) {
         return new ResponseEntity<>(financesService.delete(headers, id), HttpStatus.OK);
     }
+    @GetMapping("reports/")
+    public ResponseEntity<List<FinanceDTO>> getReports(@RequestHeader HttpHeaders headers) {
+        return new ResponseEntity<>(financesService.getReports(headers), HttpStatus.OK);
+    }
 }

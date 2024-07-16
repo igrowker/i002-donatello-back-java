@@ -121,4 +121,9 @@ public class FinancesServiceImpl implements IFinancesService {
                 );
         return financeMapper.toFinanceDto(resp.getBody());
     }
+
+    @Override
+    public List<FinanceDTO> getReports(HttpHeaders headers) {
+        return null;
+    }
 }
