@@ -1,9 +1,12 @@
 package com.igrowker.donatello.dtos;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -14,4 +17,6 @@ public class ProviderDTO {
     private String contact;
     private String address;
     private Integer userId;
+    private String company;
+    private LocalDateTime lastContact;
 }
