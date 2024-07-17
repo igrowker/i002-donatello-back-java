@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter @Getter
 @NoArgsConstructor
 @Table(name = "Providers")
@@ -34,5 +36,11 @@ public class ProviderEntity {
             referencedColumnName = "user_id"
     )
     private CustomUser user;
+
+    @Column(name = "company")
+    private String company;
+
+    @Column(name = "lastContact")
+    private LocalDateTime lastContact;
 
 }
