@@ -1,7 +1,11 @@
 package com.igrowker.donatello.config;
 
+import com.igrowker.donatello.exceptions.ForbiddenException;
 import com.igrowker.donatello.services.impl.CustomUserDetailsServiceImpl;
 import com.igrowker.donatello.utils.JWTUtils;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,31 +33,50 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        final String authHeader = request.getHeader("Authorization");
-        final String jwtToken;
-        final String userEmail;
+        try {
+            final String authHeader = request.getHeader("Authorization");
+            final String jwtToken;
+            final String userEmail;
 
-        if (authHeader == null || authHeader.isBlank()) {
+            if (authHeader == null || authHeader.isBlank()) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            jwtToken = authHeader.substring(7);
+            userEmail = jwtUtils.extractUsername(jwtToken);
+
+            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
+
+                if (jwtUtils.isTokenValid(jwtToken, userDetails)) {
+                    SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+                    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities()
+                    );
+                    token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    securityContext.setAuthentication(token);
+                    SecurityContextHolder.setContext(securityContext);
+                }
+            }
             filterChain.doFilter(request, response);
+        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e){
+            // throw new ForbiddenException(e.getMessage());
+            // todo VERIFICAR MANEJO DE ERROR!!
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo => token expìradooooo verificar manejoooo
+            // todo VERIFICAR MANEJO DE ERROR!!
+            System.out.println("LANZXANDO ERROR!!!!"+ e.getMessage());
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
             return;
         }
-
-        jwtToken = authHeader.substring(7);
-        userEmail = jwtUtils.extractUsername(jwtToken);
-
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
-
-            if (jwtUtils.isTokenValid(jwtToken, userDetails)) {
-                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities()
-                );
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                securityContext.setAuthentication(token);
-                SecurityContextHolder.setContext(securityContext);
-            }
-        }
-        filterChain.doFilter(request, response);
     }
 }

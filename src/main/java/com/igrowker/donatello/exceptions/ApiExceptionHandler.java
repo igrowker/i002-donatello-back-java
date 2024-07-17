@@ -1,6 +1,5 @@
 package com.igrowker.donatello.exceptions;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,12 +14,6 @@ public class ApiExceptionHandler {
     @ExceptionHandler({NotFoundException.class})
     @ResponseBody
     public ErrorMessage notFoundRequest(HttpServletRequest request, Exception exception) {
-        return new ErrorMessage(exception, request.getRequestURI());
-    }
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler({ExpiredJwtException.class})
-    @ResponseBody
-    public ErrorMessage expiredJwt(HttpServletRequest request, Exception exception) {
         return new ErrorMessage(exception, request.getRequestURI());
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
