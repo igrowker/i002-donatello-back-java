@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface IProductRepository extends JpaRepository<Product, Integer> {
     Boolean existsByName(String name);
-
-   // List<Product> findAllByIdUser(Integer idUser);
 }
