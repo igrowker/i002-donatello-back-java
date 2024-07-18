@@ -54,7 +54,7 @@ public class ProviderServiceIMPL implements IProviderService {
         ProviderEntity provider = getProviderbyId(id);
 
         if(provider.getUser().getId().equals(userId)){
-            // todo porque setea nuevamente el usuario? provider.setUser(iUserRepository.getReferenceById(userId));
+            // TODO ESTOS MEDOTOS DE UPDATE NO SON LO MEJOR DE LO MEJOR, SI BIEN SE AHORRA CODIGO, GENERA ERRORES SI EL DTO VIENE INCOMPLETO, YA QUE EN ESE CASO, SETEA LOS NUEVOS VALORES A NULL, REFACTORIZAR PARA MEJORAR ESO
             providerMapper.updateProvider(provider,providerDTO);
             return providerMapper.ProviderToProviderDTO(iProviderRepository.save(provider));
         }

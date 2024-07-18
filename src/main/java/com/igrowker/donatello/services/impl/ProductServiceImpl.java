@@ -62,6 +62,7 @@ public class ProductServiceImpl implements IProductService {
     }
     @Override
     public ProductDTO update(HttpHeaders headers,Integer productId, ProductDTO productDto) {
+        // TODO ESTOS MEDOTOS DE UPDATE NO SON LO MEJOR DE LO MEJOR, SI BIEN SE AHORRA CODIGO, GENERA ERRORES SI EL DTO VIENE INCOMPLETO, YA QUE EN ESE CASO, SETEA LOS NUEVOS VALORES A NULL, REFACTORIZAR PARA MEJORAR ESO
         Product product = getProducById(productId);
         productDto.setId(productId);
         productDto.setProviderId(product.getProviderId());
