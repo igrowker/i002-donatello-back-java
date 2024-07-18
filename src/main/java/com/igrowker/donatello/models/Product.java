@@ -27,5 +27,11 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
+    @Column(nullable = false)
+    private Double price;
+
+    @Column(nullable = false)
+    private String unit;
+
     private Long providerId; // lo dejo por que al usar mapStruct no puedo modificarlo manualmente, es mas facil almacenarlo por mas que sea redundante
 }
