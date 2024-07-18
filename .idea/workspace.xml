@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="819d9091-654b-4e6d-92c3-0e7c59f76118" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/auth/entities/CustomUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/auth/entities/CustomUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/dtos/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/dtos/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/dtos/ProviderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/dtos/ProviderDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/mappers/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/models/ProviderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/models/ProviderEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/repositories/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/repositories/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/repositories/IProviderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/repositories/IProviderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/IProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/IProviderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProviderServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igrowker/donatello/services/impl/ProviderServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="819d9091-654b-4e6d-92c3-0e7c59f76118" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
