@@ -47,8 +47,6 @@ public class ProviderServiceIMPL implements IProviderService {
         return providerMapper.ProviderToProviderDTO(iProviderRepository.save(provider));
     }
 
-
-
     @Override
     public ProviderDTO Update(HttpHeaders headers , Long id, ProviderDTO providerDTO) {
         Integer userId = iAuthService.getLoguedUser(headers).getId();
@@ -93,8 +91,6 @@ public class ProviderServiceIMPL implements IProviderService {
         provider.getProductList().remove(product);
         iProviderRepository.save(provider);
     }
-
-
 
     @Override
     public List<ProductDTO> findAllProductsByIdUser(Integer id) {
