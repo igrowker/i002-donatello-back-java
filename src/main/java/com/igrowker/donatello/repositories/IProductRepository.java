@@ -10,5 +10,5 @@ import java.util.List;
 public interface IProductRepository extends JpaRepository<Product, Integer> {
     Boolean existsByName(String name);
 
-    List<Product> findAllByIdUser(Integer idUser);
+   // List<Product> findAllByIdUser(Integer idUser);
 }

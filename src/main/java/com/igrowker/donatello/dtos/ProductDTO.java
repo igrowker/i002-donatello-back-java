@@ -17,6 +17,8 @@ public class ProductDTO {
 
     private Integer stock;
 
-    private Integer userID;
+    private Long providerId; // lo dejo solo para frontend
+
+    // private Integer userID;
 }
 
