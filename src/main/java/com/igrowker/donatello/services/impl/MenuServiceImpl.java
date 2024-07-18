@@ -75,6 +75,9 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public MenuDto update(HttpHeaders headers,Integer id, MenuDto menuDto) {
+
+        // TODO ESTE METODO DEBE REFACTORIZARSE.. DEMASIADAS COSAS REALIZA ESTA FUNCION, DIVIDIR Y VERIFICAR RESPONSABILIDADES!
+
         // Validar los campos del menu
         menuDto.setId(id);
         menuValidator.validate(menuDto);
@@ -161,6 +164,8 @@ public class MenuServiceImpl implements IMenuService {
             }
         }
 
+
+        // TODO ESTOS MEDOTOS DE UPDATE NO SON LO MEJOR DE LO MEJOR, SI BIEN SE AHORRA CODIGO, GENERA ERRORES SI EL DTO VIENE INCOMPLETO, YA QUE EN ESE CASO, SETEA LOS NUEVOS VALORES A NULL, REFACTORIZAR PARA MEJORAR ESO
         // Usar el mapper para actualizar el menú
          menuMapper.updateMenu(existsMenu, menuDto);
 

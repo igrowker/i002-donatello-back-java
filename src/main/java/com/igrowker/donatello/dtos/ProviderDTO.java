@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,4 +20,5 @@ public class ProviderDTO {
     private Integer userId;
     private String company;
     private LocalDateTime lastContact;
+    private List<ProductDTO> productList;
 }

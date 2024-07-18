@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter @Getter
 @NoArgsConstructor
@@ -36,6 +37,10 @@ public class ProviderEntity {
             referencedColumnName = "user_id"
     )
     private CustomUser user;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @OrderBy("name")
+    private List<Product> productList;
 
     @Column(name = "company")
     private String company;
