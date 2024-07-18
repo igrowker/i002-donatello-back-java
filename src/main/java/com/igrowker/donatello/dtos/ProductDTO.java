@@ -1,5 +1,6 @@
 package com.igrowker.donatello.dtos;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 @Getter
@@ -17,6 +18,12 @@ public class ProductDTO {
 
     private Integer stock;
 
-    private Integer userID;
+    private Double price;
+
+    private String unit;
+
+    private Long providerId; // lo dejo solo para frontend
+
+    // private Integer userID;
 }
 

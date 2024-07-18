@@ -11,17 +11,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-    @Mapping(target = "idUser", source = "userID")
+    @Mapping(target = "providerId", source = "providerId")
     @Mapping(target = "id", source = "id")
     Product toProduct(ProductDTO productDto);
 
-    @Mapping(target = "userID", source = "idUser")
+    @Mapping(target = "providerId", source = "providerId")
     @Mapping(target = "id", source = "id")
     ProductDTO toProductDto(Product product);
 
     List<ProductDTO> toProductsDto(List<Product> products);
 
-    @Mapping(source = "userID", target = "idUser")
+    @Mapping(target = "providerId", source = "providerId")
     @Mapping(target = "id", source = "id")
     void updateProduct(@MappingTarget Product product, ProductDTO productDto);
 }

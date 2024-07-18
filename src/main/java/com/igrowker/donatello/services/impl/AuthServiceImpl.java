@@ -41,8 +41,7 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     public AuthDTO register(RegisterDTO registerDTO) {
-        if (!registerDTO.getPassword().equals(registerDTO.getPassword2()))
-            throw new FieldInvalidException("Passwords do not match!");
+        if (!registerDTO.getPassword().equals(registerDTO.getPassword2())) throw new FieldInvalidException("Passwords do not match!");
 
         validateNewMail(registerDTO.getMail());
         CustomUser user = new CustomUser().builder()

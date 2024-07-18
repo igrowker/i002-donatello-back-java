@@ -66,6 +66,8 @@ public class PromotionServiceImpl implements IPromotionService {
         promotionDto.setUserId(userId);
 
         promotion.setCustomUser(userRepository.getReferenceById(promotionDto.getUserId()));
+
+        // TODO ESTOS MEDOTOS DE UPDATE NO SON LO MEJOR DE LO MEJOR, SI BIEN SE AHORRA CODIGO, GENERA ERRORES SI EL DTO VIENE INCOMPLETO, YA QUE EN ESE CASO, SETEA LOS NUEVOS VALORES A NULL, REFACTORIZAR PARA MEJORAR ESO
         promotionMapper.updatePromotion(promotion, promotionDto);
         return promotionMapper.toPromotionDto(promotionRepository.save(promotion));
     }

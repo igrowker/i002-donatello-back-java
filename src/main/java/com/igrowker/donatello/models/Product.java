@@ -18,7 +18,7 @@ public class Product {
     @Column(name = "id_product")
     private Integer id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description", nullable = false)
@@ -27,10 +27,11 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    @Column(name = "user_id")
-    private Integer idUser;
+    @Column(nullable = false)
+    private Double price;
 
-    @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private CustomUser customUser;
+    @Column(nullable = false)
+    private String unit;
+
+    private Long providerId; // lo dejo por que al usar mapStruct no puedo modificarlo manualmente, es mas facil almacenarlo por mas que sea redundante
 }
