@@ -28,14 +28,4 @@ public class Product {
     private Integer stock;
 
     private Long providerId; // lo dejo por que al usar mapStruct no puedo modificarlo manualmente, es mas facil almacenarlo por mas que sea redundante
-
-/*
-    @Column(name = "user_id")
-    private Integer idUser;
-
-    @ManyToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private CustomUser customUser;
-
-     */
 }
