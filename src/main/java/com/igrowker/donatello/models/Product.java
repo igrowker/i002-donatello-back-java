@@ -33,5 +33,7 @@ public class Product {
     @Column(nullable = false)
     private String unit;
 
+    private Integer minStock;
+
     private Long providerId; // lo dejo por que al usar mapStruct no puedo modificarlo manualmente, es mas facil almacenarlo por mas que sea redundante
 }

@@ -22,6 +22,8 @@ public class ProductDTO {
 
     private String unit;
 
+    private Integer minStock;
+
     private Long providerId; // lo dejo solo para frontend
 
     // private Integer userID;
