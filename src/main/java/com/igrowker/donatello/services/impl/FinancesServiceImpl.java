@@ -47,19 +47,6 @@ public class FinancesServiceImpl implements IFinancesService {
     @Override
     public List<FinanceDTO> getAll(HttpHeaders headers) {
         Integer userId = authService.getLoguedUser(headers).getId();
-        /*  todo verificar error
-        ResponseEntity<FinanceExternalArrayDto> resp = restTemplate.exchange(
-                baseUrlPythonApi+"/finances/transactions/",
-                HttpMethod.GET,
-                new HttpEntity<>(getNewHeadersWithAuth()),
-                FinanceExternalArrayDto.class
-        );
-        return financeMapper.toFinanceDtoList(resp.getBody());
-
-        */
-
-        // solucion alternativa, para error de serializacion con restTemplate.exchange()
-
         ResponseEntity<String> rawResp = restTemplate.exchange(
                 baseUrlPythonApi + "/finances/transactions/",// +userId, // => todo deben recibir el id user, para traer solo los que corresponde a un user en particular
                 HttpMethod.GET,
@@ -69,10 +56,7 @@ public class FinancesServiceImpl implements IFinancesService {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
-
-            // Deserializa la respuesta JSON en una lista de FinanceExternalDto
             List<FinanceExternalDto> financeExternalDtoList = objectMapper.readValue(rawResp.getBody(), new TypeReference<List<FinanceExternalDto>>(){});
-
             return financeMapper.toFinanceDtoList(financeExternalDtoList);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
