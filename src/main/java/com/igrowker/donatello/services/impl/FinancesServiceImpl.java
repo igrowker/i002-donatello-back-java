@@ -1,13 +1,10 @@
 package com.igrowker.donatello.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.igrowker.donatello.auth.entities.CustomUser;
 import com.igrowker.donatello.dtos.finances.FinanceDTO;
-import com.igrowker.donatello.dtos.finances.FinanceExternalArrayDto;
 import com.igrowker.donatello.dtos.finances.FinanceExternalDto;
 import com.igrowker.donatello.mappers.FinanceMapper;
 import com.igrowker.donatello.services.IAuthService;
@@ -25,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FinancesServiceImpl implements IFinancesService {
 
-    final String baseUrlPythonApi = "https://4jgqy.wiremockapi.cloud"; // TODO PASAR A properties con valores correctos!
+    final String baseUrlPythonApi = "http://127.0.0.1:8000/api"; // TODO PASAR A properties con valores correctos!
     final String userPythonApi = "davidDonatelloPython"; // TODO PASAR A properties con valores correctos!
     final String passPythonApi = "davidDonatelloPython"; // TODO PASAR A properties con valores correctos!
 
@@ -40,7 +37,7 @@ public class FinancesServiceImpl implements IFinancesService {
     private HttpHeaders getNewHeadersWithAuth(){
         HttpHeaders pythonHeaders = new HttpHeaders();
         pythonHeaders.setContentType(MediaType.APPLICATION_JSON);
-        pythonHeaders.add("Authorization", "Basic "+generateHash());
+        // todo verificar si necesitamos credenciales.. deberiamos !!! => pythonHeaders.add("Authorization", "Basic "+generateHash());
         return  pythonHeaders;
     }
     private String generateHash(){
@@ -57,20 +54,26 @@ public class FinancesServiceImpl implements IFinancesService {
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 FinanceExternalArrayDto.class
         );
-        return financeMapper.toFinanceDtoList(resp.getBody());  */
+        return financeMapper.toFinanceDtoList(resp.getBody());
+
+        */
 
         // solucion alternativa, para error de serializacion con restTemplate.exchange()
+
         ResponseEntity<String> rawResp = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/transactions/"+userId, // => todo deben recibir el id user, para traer solo los que corresponde a un user en particular
+                baseUrlPythonApi + "/finances/transactions/",// +userId, // => todo deben recibir el id user, para traer solo los que corresponde a un user en particular
                 HttpMethod.GET,
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 String.class
         );
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule()); // todo soluciona error: "com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDate` not supported by default: add Module...
-            FinanceExternalArrayDto financeExternalArrayDto = objectMapper.readValue(rawResp.getBody(), FinanceExternalArrayDto.class);
-            return financeMapper.toFinanceDtoList(financeExternalArrayDto);
+            objectMapper.registerModule(new JavaTimeModule());
+
+            // Deserializa la respuesta JSON en una lista de FinanceExternalDto
+            List<FinanceExternalDto> financeExternalDtoList = objectMapper.readValue(rawResp.getBody(), new TypeReference<List<FinanceExternalDto>>(){});
+
+            return financeMapper.toFinanceDtoList(financeExternalDtoList);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

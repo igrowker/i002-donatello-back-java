@@ -25,9 +25,9 @@ public class FinanceExternalDto {
     // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
     // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
     // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-    private Integer id;
-    private String type;
-    private Double amount;
-    private LocalDate date; // YYYY-MM-DD
-    private Integer userID;
+    private Integer id_finanza;
+    private String tipo;
+    private Double monto;
+    private LocalDate fecha; // YYYY-MM-DD
+    private Integer id_usuario;
 }

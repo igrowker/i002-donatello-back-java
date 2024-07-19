@@ -1,11 +1,9 @@
 package com.igrowker.donatello.mappers;
 
 import com.igrowker.donatello.dtos.finances.FinanceDTO;
-import com.igrowker.donatello.dtos.finances.FinanceExternalArrayDto;
 import com.igrowker.donatello.dtos.finances.FinanceExternalDto;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,21 +11,14 @@ import java.util.stream.Collectors;
 public class FinanceMapper {
     public FinanceDTO toFinanceDto(FinanceExternalDto dto){
         return FinanceDTO.builder()
-                .id(dto.getId())
-                .type(dto.getType())
-                .amount(dto.getAmount())
-                .date(dto.getDate())
-                .userID(dto.getUserID())
+                .id(dto.getId_finanza())
+                .type(dto.getTipo())
+                .amount(dto.getMonto())
+                .date(dto.getFecha())
+                .userID(dto.getId_usuario())
                 .build();
     }
-    public List<FinanceDTO> toFinanceDtoList(FinanceExternalArrayDto dtoList){
-        /*
-        List<FinanceDTO> dtos = new ArrayList<>();
-         for (int i = 0; i<dtoList.getDtoList().size(); i++){
-             dtos.add(this.toFinanceDto(dtoList.getDtoList().get(i)));
-         }
-         return dtos;
-         */
-        return dtoList.getDtoList().stream().map(dto-> this.toFinanceDto(dto)).collect(Collectors.toList());
+    public List<FinanceDTO> toFinanceDtoList(List<FinanceExternalDto> dtoList){
+        return dtoList.stream().map(dto-> this.toFinanceDto(dto)).collect(Collectors.toList());
     }
 }
