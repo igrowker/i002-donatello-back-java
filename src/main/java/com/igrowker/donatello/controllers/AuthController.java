@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/auth/", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Tag(name = "Authentication") // name of endpoint grup in swagger
+@Tag(name = "Usuarios")
 public class AuthController {
     @Autowired
     private AuthServiceImpl authService;
 
-    @Operation(summary = "Enviando username y password, retorna un JWT con las credenciales del usuario")
+    @Operation(summary = "Enviando email y password, retorna un JWT con las credenciales del usuario")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Retorna un JWT",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = AuthDTO.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad credentials",
+            @ApiResponse(responseCode = "400", description = "Credenciales invalidas",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) }) })
     @PostMapping("login")
@@ -45,7 +45,7 @@ public class AuthController {
             @ApiResponse(responseCode = "200", description = "Retorna un JWT",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = AuthDTO.class)) }),
-            @ApiResponse(responseCode = "400", description = "Bad credentials",
+            @ApiResponse(responseCode = "400", description = "Credenciales invalidas",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) }) })
     @PostMapping("register")
