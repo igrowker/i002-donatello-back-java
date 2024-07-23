@@ -46,7 +46,7 @@ public class CustomerController {
     }
     @Operation(summary = "Crea un cliente perteneciente al usuario logueado")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Retorna cliente creado",
+            @ApiResponse(responseCode = "202", description = "Retorna cliente creado",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CustomerDTO.class)) }),
             @ApiResponse(responseCode = "403", description = "Credenciales invalidas",
                     content = { @Content(mediaType = "application/json",
@@ -64,6 +64,9 @@ public class CustomerController {
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CustomerDTO.class)) }),
             @ApiResponse(responseCode = "403", description = "Credenciales invalidas",
                     content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorMessage.class)) }),
+            @ApiResponse(responseCode = "404", description = "Cliente no encontrado por id",
+                    content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) })
     })
     @PutMapping(value = "/{id}")
@@ -77,6 +80,9 @@ public class CustomerController {
             @ApiResponse(responseCode = "200", description = "Retorna cliente eliminado",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CustomerDTO.class)) }),
             @ApiResponse(responseCode = "403", description = "Credenciales invalidas",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorMessage.class)) }),
+            @ApiResponse(responseCode = "404", description = "Cliente no encontrado por id",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) })
     })
