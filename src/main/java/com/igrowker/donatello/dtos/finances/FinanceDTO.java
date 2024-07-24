@@ -15,12 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class FinanceDTO {
-    /*
-    id_finanza = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=100)
-    monto = models.DecimalField(max_digits=10, decimal_places=2)
-    fecha = models.DateField()
-    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)     */
+
     private Integer id;
     private String type;
     private Double amount;
