@@ -14,12 +14,6 @@ import java.time.LocalDate;
 @Builder
 public class FinanceExternalDto {
 
-    // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-    // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-    // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-    // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-    // TODO ACA DEBERIA USAR @JsonProperty("tipo") => segun como hayan hecho en python
-
     private Integer id_finanza;
 
     private String tipo;
@@ -29,4 +23,8 @@ public class FinanceExternalDto {
     private LocalDate fecha;
 
     private Integer id_usuario;
+
+    private String descripcion;
+
+    private FinanceOrigin motivo;
 }

@@ -18,6 +18,8 @@ public class FinanceMapper {
                 .amount(dto.getMonto())
                 .date(dto.getFecha())
                 .userID(dto.getId_usuario())
+                .origin(dto.getMotivo())
+                .description(dto.getDescripcion())
                 .build();
     }
 
@@ -28,6 +30,8 @@ public class FinanceMapper {
                 .monto(dto.getAmount())
                 .fecha(dto.getDate())
                 .id_usuario(dto.getUserID())
+                .motivo(dto.getOrigin())
+                .descripcion(dto.getDescription())
                 .build();
     }
     public List<FinanceDTO> toFinanceDtoList(List<FinanceExternalDto> dtoList){
@@ -42,6 +46,8 @@ public class FinanceMapper {
         externalDto.setTipo(financeDTO.getType());
         externalDto.setMonto(financeDTO.getAmount());
         externalDto.setFecha(financeDTO.getDate());
+        externalDto.setDescripcion(financeDTO.getDescription());
+        externalDto.setMotivo(financeDTO.getOrigin());
         //externalDto.setId_usuario(financeDTO.getUserID());
         return externalDto;
     }

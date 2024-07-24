@@ -110,6 +110,8 @@ public class FinancesServiceImpl implements IFinancesService {
         externalDto.setTipo(dto.getType());
         externalDto.setMonto(dto.getAmount());
         externalDto.setFecha(dto.getDate());
+        externalDto.setDescripcion(dto.getDescription());
+        externalDto.setMotivo(dto.getOrigin());
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();

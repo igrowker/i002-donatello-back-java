@@ -21,4 +21,6 @@ public class FinanceDTO {
     private Double amount;
     private LocalDate date; // YYYY-MM-DD
     private Integer userID;
+    private String description;
+    private FinanceOrigin origin;
 }
