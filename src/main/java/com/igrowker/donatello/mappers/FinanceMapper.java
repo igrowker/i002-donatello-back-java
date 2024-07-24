@@ -2,6 +2,8 @@ package com.igrowker.donatello.mappers;
 
 import com.igrowker.donatello.dtos.finances.FinanceDTO;
 import com.igrowker.donatello.dtos.finances.FinanceExternalDto;
+import com.igrowker.donatello.dtos.finances.FinanceIncomeDto;
+import com.igrowker.donatello.dtos.finances.FinanceIncomeExternalDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,7 +20,36 @@ public class FinanceMapper {
                 .userID(dto.getId_usuario())
                 .build();
     }
+
+    public FinanceExternalDto toFinanceExternalDto(FinanceDTO dto){
+        return FinanceExternalDto.builder()
+                .id_finanza(dto.getId())
+                .tipo(dto.getType())
+                .monto(dto.getAmount())
+                .fecha(dto.getDate())
+                .id_usuario(dto.getUserID())
+                .build();
+    }
     public List<FinanceDTO> toFinanceDtoList(List<FinanceExternalDto> dtoList){
-        return dtoList.stream().map(dto-> this.toFinanceDto(dto)).collect(Collectors.toList());
+        return dtoList.stream().map(this::toFinanceDto).collect(Collectors.toList());
+    }
+
+    public FinanceExternalDto updateFinance(FinanceDTO financeDTO, FinanceExternalDto externalDto){
+        if (externalDto == null){
+            return null;
+        }
+        externalDto.setId_finanza(financeDTO.getId());
+        externalDto.setTipo(financeDTO.getType());
+        externalDto.setMonto(financeDTO.getAmount());
+        externalDto.setFecha(financeDTO.getDate());
+        //externalDto.setId_usuario(financeDTO.getUserID());
+        return externalDto;
+    }
+
+    public FinanceIncomeDto toFinanceIncomeDto(FinanceIncomeExternalDto dto){
+        return FinanceIncomeDto.builder()
+                .incomeWeekly(dto.getTotal_ingresos_semana())
+                .incomeMonthly(dto.getTotal_ingresos_mes())
+                .build();
     }
 }
