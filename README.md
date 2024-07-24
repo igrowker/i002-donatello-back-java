@@ -91,7 +91,7 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### 🚀 https://igrowker.com/
 ### 🚀 https://www.linkedin.com/company/igrowker/
 
-![image](https://xlab.igrowker.com/ig_w%202.png)
+![image](https://igrowker.com/assets/logow-CT2U1-1l.png)
 
 
 
