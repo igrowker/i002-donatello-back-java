@@ -44,6 +44,7 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getProducts(@RequestHeader HttpHeaders headers) {
         return new ResponseEntity<>(productService.getProducts(headers), HttpStatus.OK);
     }
+
     @Operation(summary = "Crea un producto perteneciente al usuario logueado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Retorna producto creado",

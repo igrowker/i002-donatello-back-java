@@ -25,8 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/profile", produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Productos")
-@SecurityRequirement(name = "Bearer Authentication")
+@Tag(name = "Perfil")
 public class ProfileController {
     @Autowired
     ProfileServiceImpl profileService;
@@ -52,6 +51,7 @@ public class ProfileController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) })
     })
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping()
     public ResponseEntity<ProfileReadDto> getProfile (@RequestHeader HttpHeaders headers){
         return new ResponseEntity<>(profileService.getProfile(headers), HttpStatus.OK);
@@ -65,6 +65,7 @@ public class ProfileController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) })
     })
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping()
     public ResponseEntity<ProfileReadDto> createProfile (@RequestHeader HttpHeaders headers, @Valid @RequestBody ProfileAddDto profileAddDto){
         return new ResponseEntity<>(profileService.createProfile(headers, profileAddDto), HttpStatus.CREATED);
@@ -78,6 +79,7 @@ public class ProfileController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorMessage.class)) })
     })
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping()
     public ResponseEntity<ProfileReadDto> editProfile (@RequestHeader HttpHeaders headers, @Valid @RequestBody ProfileUpdateDto profileUpdateDto){
         return new ResponseEntity<>(profileService.editProfile(headers, profileUpdateDto), HttpStatus.OK);
