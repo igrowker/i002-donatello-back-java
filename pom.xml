@@ -107,6 +107,13 @@
 			<version>8.12.40</version> <!-- Asegúrate de usar la última versión disponible -->
 		</dependency>
 
+		<!-- para swagger -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<!-- para swagger -->
 	</dependencies>
 
 	<build>
