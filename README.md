@@ -31,7 +31,7 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### Frontend
 - **Despliegue**:  https://dona-tello.netlify.app/
 - **Repositorio**: https://github.com/igrowker/i002-donatello-front
-- **Tecnologías**: Angular `PENDIENTEEEEE MODIFICAR`
+- **Tecnologías**: Angular, Github Actions `PENDIENTEEEEE MODIFICAR`
 
 ### Backend Python (Finanzas)
 - **Despliegue**:  https://dona-tello.netlify.app/ `PENDIENTEEEEE MODIFICAR`
@@ -41,7 +41,7 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### Backend Java (API principal)
 - **Despliegue**:  https://i002-donatello-back-java-latest-z9hn.onrender.com/
 - **Repositorio**: https://github.com/igrowker/i002-donatello-back-java
-- **Tecnologías**: Java 17, Springboot 3, PostrgreSQL, Json Web Token, Swagger, Docker, etcs.   `Revisar!!`
+- **Tecnologías**: Java 17, Springboot 3, PostrgreSQL, Json Web Token, Swagger, Docker, Github Actions etcs.   `Revisar!!`
 - **Endpoints**: `Swagger:` https://i002-donatello-back-java-latest-z9hn.onrender.com/api/docs barra algo mas... `Revisar!!`   
 
 ## Funcionalidades
@@ -75,6 +75,9 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### QA 
 - `Marcelo` https://www.linkedin.com/in/marcelo-de-angelis-/
 - `Nancy` https://www.linkedin.com/in/Nancy-Cabral-Ruiz-Diaz/
+
+### DevOps
+- `Adrián` https://www.linkedin.com/in/adriánramos/
 
 ## Otros datos que falten agregar??? 
 `Revisar!!` 
