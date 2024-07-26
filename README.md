@@ -34,9 +34,9 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 - **Tecnologías**: Angular, Github Actions `PENDIENTEEEEE MODIFICAR`
 
 ### Backend Python (Finanzas)
-- **Despliegue**:  https://dona-tello.netlify.app/ `PENDIENTEEEEE MODIFICAR`
+- **Despliegue**:  https://i002-donatello-back-python.onrender.com/
 - **Repositorio**: https://github.com/igrowker/i002-donatello-back-python
-- **Tecnologías**: Python `PENDIENTEEEEE MODIFICAR`
+- **Tecnologías**: Python, Django, PostgreSQL, Github Actions, Render.
 
 ### Backend Java (API principal)
 - **Despliegue**:  https://i002-donatello-back-java-latest-z9hn.onrender.com/
@@ -78,6 +78,13 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 
 ### DevOps
 - `Adrián` https://www.linkedin.com/in/adriánramos/
+
+## Workflow DevOps
+`1.` Construcción de la Imagen Docker: Se utiliza un Dockerfile para construir una imagen Docker personalizada. Se define el entorno y las dependencias necesarias para el proyecto.
+`2.` Push de la Imagen a Docker Hub: Después de construir la imagen, el workflow realiza el push de esta imagen a Docker Hub, almacenando la de forma segura y permitiendo acceder a ella desde diferentes entornos.
+`3.` Construcción de la Infraestructura: Una vez que la imagen está disponible en Docker Hub, Render utiliza esta imagen para construir y configurar la infraestructura. Se deben setear las variables de entorno y de forma paralela debe existir una BD postgres.  
+
+# Para correr aplicacion: Setear variables de conexion a base de datos (url, username y password) en archivos **.properties , luego ejecutar archivo DonatelloAplication . Requiere JDK 17.
 
 ## Otros datos que falten agregar??? 
 `Revisar!!` 
