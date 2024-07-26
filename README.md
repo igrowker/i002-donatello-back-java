@@ -44,6 +44,9 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 - **Tecnologías**: Java 17, Springboot 3, PostrgreSQL, Json Web Token, Mapstrut, Swagger, Docker, Github Actions etcs.
 - **Endpoints**: `Swagger:` https://i002-donatello-back-java-latest-z9hn.onrender.com/docs/swagger-ui/index.html 
 
+### QA Docs
+- **https://github.com/igrowker/i002-donatello-back-java/tree/develop/testing**
+
 ## Funcionalidades
 - **Usuarios, Autenticación y autorización**: Usando spring security, JWT (Json Web Token). Gestión del perfil público.
 - **Inventario**: Gestión de productos y stock.
@@ -81,7 +84,7 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 `2.` Push de la Imagen a Docker Hub: Después de construir la imagen, el workflow realiza el push de esta imagen a Docker Hub, almacenando la de forma segura y permitiendo acceder a ella desde diferentes entornos.
 `3.` Construcción de la Infraestructura: Una vez que la imagen está disponible en Docker Hub, Render utiliza esta imagen para construir y configurar la infraestructura. Se deben setear las variables de entorno y de forma paralela debe existir una BD postgres.  
 
-# Para correr aplicacion: Setear variables de conexion a base de datos (url, username y password) en archivos **.properties , luego ejecutar archivo DonatelloAplication . Requiere JDK 17.
+## Para correr aplicacion: Setear variables de conexion a base de datos (url, username y password) en archivos **.properties , luego ejecutar archivo DonatelloAplication . Requiere JDK 17.
 
 # Agradecimientos
 
