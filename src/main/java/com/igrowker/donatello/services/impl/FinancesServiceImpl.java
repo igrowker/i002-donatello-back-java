@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.igrowker.donatello.dtos.finances.FinanceDTO;
-import com.igrowker.donatello.dtos.finances.FinanceExternalDto;
-import com.igrowker.donatello.dtos.finances.FinanceIncomeDto;
-import com.igrowker.donatello.dtos.finances.FinanceIncomeExternalDto;
+import com.igrowker.donatello.dtos.finances.*;
 import com.igrowker.donatello.exceptions.ForbiddenException;
 import com.igrowker.donatello.exceptions.NotFoundException;
 import com.igrowker.donatello.mappers.FinanceMapper;
@@ -15,10 +12,12 @@ import com.igrowker.donatello.services.IAuthService;
 import com.igrowker.donatello.services.IFinancesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
@@ -26,8 +25,9 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class FinancesServiceImpl implements IFinancesService {
+    @Autowired
+    private Environment environment;
 
-    final String baseUrlPythonApi = "http://127.0.0.1:8000/api"; // TODO PASAR A properties con valores correctos!
     final String userPythonApi = "davidDonatelloPython"; // TODO PASAR A properties con valores correctos!
     final String passPythonApi = "davidDonatelloPython"; // TODO PASAR A properties con valores correctos!
 
@@ -38,6 +38,12 @@ public class FinancesServiceImpl implements IFinancesService {
     @Autowired
     IAuthService authService;
 
+
+    private String getUrlApiPython() {
+
+        return "http://127.0.0.1:8000//api";
+        // return environment.getProperty("api.backend.python")+"/api";
+    }
 
     private HttpHeaders getNewHeadersWithAuth() {
         HttpHeaders pythonHeaders = new HttpHeaders();
@@ -55,7 +61,7 @@ public class FinancesServiceImpl implements IFinancesService {
     public List<FinanceDTO> getAll(HttpHeaders headers) {
         Integer userId = authService.getLoguedUser(headers).getId();
         ResponseEntity<String> rawResp = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/transactions/" + userId + "/",// +userId, // => todo deben recibir el id user, para traer solo los que corresponde a un user en particular
+                getUrlApiPython() + "/finances/transactions/" + userId + "/",// +userId, // => todo deben recibir el id user, para traer solo los que corresponde a un user en particular
                 HttpMethod.GET,
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 String.class
@@ -79,9 +85,14 @@ public class FinancesServiceImpl implements IFinancesService {
         // Mapear FinanceDTO a FinanceExternalDto
         FinanceExternalDto externalDto = financeMapper.toFinanceExternalDto(dto);
 
+
+        HttpHeaders pythonHeaders = headers;
+
+        //pythonHeaders.setAccept(MediaType.APPLICATION_JSON);
+
         ResponseEntity<FinanceExternalDto> resp = restTemplate.postForEntity(
-                baseUrlPythonApi + "/finances/create/",
-                new HttpEntity<>(externalDto, headers),
+                getUrlApiPython() + "/finances/create/",
+                new HttpEntity<>(externalDto,pythonHeaders), // getNewHeadersWithAuth()
                 FinanceExternalDto.class);
 
         // Mapear de vuelta a FinanceDTO
@@ -90,12 +101,13 @@ public class FinancesServiceImpl implements IFinancesService {
 
     @Override
     public FinanceDTO edit(HttpHeaders headers, Integer id, FinanceDTO dto) {
+
         dto.setId(id);
         Integer userId = authService.getLoguedUser(headers).getId();
 
         // Obtener la información del recurso para verificar la propiedad
         ResponseEntity<FinanceExternalDto> getResponse = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/details/" + id + "/",
+                getUrlApiPython() + "/finances/details/" + id + "/",
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 FinanceExternalDto.class
@@ -112,7 +124,7 @@ public class FinancesServiceImpl implements IFinancesService {
         // Realizar la solicitud de actualización
         HttpEntity<FinanceExternalDto> updateRequest = new HttpEntity<>(externalDTO, headers);
         ResponseEntity<FinanceExternalDto> updateResponse = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/update/" + id + "/",
+                getUrlApiPython() + "/finances/update/" + id + "/",
                 HttpMethod.PUT,
                 new HttpEntity<>(externalDTO, headers),
                 FinanceExternalDto.class
@@ -127,7 +139,7 @@ public class FinancesServiceImpl implements IFinancesService {
         Integer userId = authService.getLoguedUser(headers).getId();
         // Obtener la información del recurso para verificar la propiedad
         ResponseEntity<FinanceExternalDto> getResponse = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/details/" + id + "/",
+                getUrlApiPython() + "/finances/details/" + id + "/",
                 HttpMethod.GET,
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 FinanceExternalDto.class
@@ -140,7 +152,7 @@ public class FinancesServiceImpl implements IFinancesService {
 
         // Realizar la solicitud de eliminación si el usuario es el propietario
         ResponseEntity<Void> deleteResponse = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/delete/" + id + "/",
+                getUrlApiPython() + "/finances/delete/" + id + "/",
                 HttpMethod.DELETE,
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 Void.class
@@ -152,7 +164,7 @@ public class FinancesServiceImpl implements IFinancesService {
     public FinanceDTO getById(HttpHeaders headers, Integer id) {
         Integer userId = authService.getLoguedUser(headers).getId();
         ResponseEntity<FinanceExternalDto> resp = restTemplate.exchange(
-                baseUrlPythonApi + "/finances/details/" + id +"/", // => todo deben recibir el id user, para verificar si es correcto devolver info..
+                getUrlApiPython() + "/finances/details/" + id +"/", // => todo deben recibir el id user, para verificar si es correcto devolver info..
                 HttpMethod.GET,
                 new HttpEntity<>(getNewHeadersWithAuth()),
                 FinanceExternalDto.class
@@ -174,7 +186,7 @@ public class FinancesServiceImpl implements IFinancesService {
         Integer userId = authService.getLoguedUser(headers).getId();
 
         ResponseEntity<FinanceIncomeExternalDto> response = restTemplate.getForEntity(
-                baseUrlPythonApi + "/finances/ingreso-total/" + userId + "/",
+                getUrlApiPython() + "/finances/ingreso-total/" + userId + "/",
                 FinanceIncomeExternalDto.class
         );
 
