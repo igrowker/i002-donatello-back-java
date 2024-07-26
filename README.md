@@ -31,7 +31,7 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### Frontend
 - **Despliegue**:  https://dona-tello.netlify.app/
 - **Repositorio**: https://github.com/igrowker/i002-donatello-front
-- **Tecnologías**: Angular, Github Actions `PENDIENTEEEEE MODIFICAR`
+- **Tecnologías**: Angular 16, Bootstrap, Github Actions `PENDIENTEEEEE MODIFICAR`
 
 ### Backend Python (Finanzas)
 - **Despliegue**:  https://i002-donatello-back-python.onrender.com/
@@ -41,8 +41,8 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 ### Backend Java (API principal)
 - **Despliegue**:  https://i002-donatello-back-java-latest-z9hn.onrender.com/
 - **Repositorio**: https://github.com/igrowker/i002-donatello-back-java
-- **Tecnologías**: Java 17, Springboot 3, PostrgreSQL, Json Web Token, Swagger, Docker, Github Actions etcs.   `Revisar!!`
-- **Endpoints**: `Swagger:` https://i002-donatello-back-java-latest-z9hn.onrender.com/api/docs barra algo mas... `Revisar!!`   
+- **Tecnologías**: Java 17, Springboot 3, PostrgreSQL, Json Web Token, Mapstrut, Swagger, Docker, Github Actions etcs.
+- **Endpoints**: `Swagger:` https://i002-donatello-back-java-latest-z9hn.onrender.com/docs/swagger-ui/index.html 
 
 ## Funcionalidades
 - **Usuarios, Autenticación y autorización**: Usando spring security, JWT (Json Web Token). Gestión del perfil público.
@@ -50,17 +50,15 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 - **Clientes**: Gestión de datos de clientes.
 - **Proveedores**: Gestión de contactos de proveedores.
 - **Promociones**: Creación y gestión de promociones.
-- **Notificaciones**: Gestión de notificaciones y alertas. `Revisar!!` 
+- **Notificaciones**: Gestión de notificaciones y alertas. `En proceso..` 
 - **Menú**: Gestión de menús y sus elementos.
 - **Finanzas**: A traves del backend Python, Gestión de transacciones financieras. Registro de ingresos y gastos. Generación de reportes financieros.
 
 ## Equipo
 ### Frontend
-- `Abraham` https://www.linkedin.com/in/abraham-rubin-arg/
 - `Brikman` https://www.linkedin.com/in/brikman-paul-morales-52a9a7245/
 - `Damian` https://www.linkedin.com/in/damian-e-lambrecht/
 - `Erik` https://www.linkedin.com/in/erik-argel/
-- `Richard` https://www.linkedin.com/in/richard-alexander-diaz-cata%C3%B1o-a566421bb/
 
 ### Backend Python 
 - `Delfina` https://www.linkedin.com/in/delfina-quinteros-b61370209/
@@ -70,7 +68,6 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 - `David` https://www.linkedin.com/in/david-costa-yafar/
 - `Emanuel` https://www.linkedin.com/in/emamagallanes/
 - `Jesus` https://www.linkedin.com/in/jvaletadoria1095/
-- `Ursula` https://www.linkedin.com/in/ursula-martinez
 
 ### QA 
 - `Marcelo` https://www.linkedin.com/in/marcelo-de-angelis-/
@@ -85,14 +82,6 @@ Inspirado en el personaje de las Tortugas Ninja, simboliza innovación tecnológ
 `3.` Construcción de la Infraestructura: Una vez que la imagen está disponible en Docker Hub, Render utiliza esta imagen para construir y configurar la infraestructura. Se deben setear las variables de entorno y de forma paralela debe existir una BD postgres.  
 
 # Para correr aplicacion: Setear variables de conexion a base de datos (url, username y password) en archivos **.properties , luego ejecutar archivo DonatelloAplication . Requiere JDK 17.
-
-## Otros datos que falten agregar??? 
-`Revisar!!` 
-`Revisar!!` 
-`Revisar!!` 
-`Revisar!!` 
-`Revisar!!` 
-`Revisar!!` 
 
 # Agradecimientos
 
